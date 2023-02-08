@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 사용자 정의 클래스 메모리 할당 : 패키지 단위로 등록 -->
+	<context:component-scan base-package="com.sist.*"/>
+	
+	<!-- 어노테이션 : 클래스 위에 설정 시 메모리 할당 요청 
+		@Component : 일반 클래스(MainClass, ~Manager)
+		@Repository :  DAO
+		@Service :  DAO 여러개 처리
+		@Controller : Model 클래스 -> 파일명 전송
+		@RestController : Model 클래스 -> 일반 문자열/JSON 전송, 프론트 연결(ajax 등)시 사용
+		@ControllerAdvice : 공통 적용 예외처리
+		@Configuration : XML 대신 자바로 환경 설정 -> 보안 강화
+	-->
+	
+	<!-- 데이터베이스 설정 -->
+	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@localhost:1521:XE"
+		p:username="hr"
+		p:password="happy"
+	/>
+	<!-- 설정된 정보 이용해서 데이터베이스 연결 -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="ds"
+	/>
+	<!-- Mapper 인터페이스 구현 -->
+	<bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:sqlSessionFactory-ref="ssf"
+		p:mapperInterface="com.sist.mapper.EmpMapper"
+	/>
+	<!-- View 설정 : JSP 찾아서 request 전송 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/"
+		p:suffix=".jsp"
+	/>
+</beans>
