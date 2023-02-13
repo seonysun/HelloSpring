@@ -3,18 +3,18 @@ package com.sist.myapp;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 /*
- * XML, Container È£Ãâ
- * 	1) ½ºÇÁ¸µ¿¡ µî·ÏÇÒ Å¬·¡½º Á¦ÀÛ : Model, DAO, Manager
- * 	2) »ç¿ëÀÚ Á¤ÀÇ µ¥ÀÌÅÍÇüÀº Á¦¿Ü : VO, DTO, Bean
- * 	3) XML ÀÌ¿ëÇØ¼­ µî·Ï
- * 	4) ½ºÇÁ¸µ ¶óÀÌºê·¯¸®¿¡¼­ ApplicationContext¿¡ µî·Ï Ã³¸®
- * 	5) µî·ÏµÈ Å¬·¡½º ApplicationContext¿¡¼­ ¾ò¾î¿Í¼­ ±¸Çö, Á¶¸³
- * 	6) µî·ÏµÈ Å¬·¡½º ¼Ò¸ê
+ * XML, Container í˜¸ì¶œ
+ * 	1) ìŠ¤í”„ë§ì— ë“±ë¡í•  í´ë˜ìŠ¤ ì œì‘ : Model, DAO, Manager
+ * 	2) ì‚¬ìš©ì ì •ì˜ ë°ì´í„°í˜•ì€ ë“±ë¡ ì œì™¸ : VO, DTO, Bean
+ * 	3) XML ì´ìš©í•´ì„œ ë“±ë¡
+ * 	4) ìŠ¤í”„ë§ ë¼ì´ë¸ŒëŸ¬ë¦¬ì—ì„œ ApplicationContextì— ë“±ë¡ ì²˜ë¦¬
+ * 	5) ë“±ë¡ëœ í´ë˜ìŠ¤ ApplicationContextì—ì„œ ì–»ì–´ì™€ì„œ êµ¬í˜„, ì¡°ë¦½
+ * 	6) ë“±ë¡ëœ í´ë˜ìŠ¤ ì†Œë©¸
  * */
 public class MainClass {
 	public static void main(String[] args) {
 		ApplicationContext app=new ClassPathXmlApplicationContext("app.xml");
-		//½ºÇÁ¸µ ¶óÀÌºê·¯¸® -> src/main/java±îÁö ÀÎ½Ä, ´Ù¸¥ ÆĞÅ°Áö ¾È¿¡ »ı¼ºÇÒ °æ¿ì °æ·Î Ãß°¡·Î Áà¾ß ÇÔ
+			//ìŠ¤í”„ë§ ë¼ì´ë¸ŒëŸ¬ë¦¬ -> ê²½ë¡œ src/main/javaê¹Œì§€ ì¸ì‹, ë‹¤ë¥¸ íŒ¨í‚¤ì§€ ì•ˆì— ìƒì„±í•  ê²½ìš° ê²½ë¡œ ì¶”ê°€ë¡œ ì¤˜ì•¼ í•¨
 		AModel a=(AModel)app.getBean("a");
 		a.display();
 		AModel a1=(AModel)app.getBean("a");

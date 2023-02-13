@@ -3,6 +3,7 @@ package com.sist.spring3;
 public class MainClass {
 	public static void main(String[] args) {
 		ApplicationContext app=new ApplicationContext();
+		
 		AModel a=(AModel)app.getBean("amodel");
 		a.display();
 		System.out.println("a="+a);

@@ -3,8 +3,8 @@ package com.sist.spring1;
 public class MainClass {
 	public static void main(String[] args) {
 		Hello hello=new Hello();
-					//°áÇÕ¼ºÀÌ ³ôÀº ÇÁ·Î±×·¥ -> ºñÃß
-		String msg=hello.sayHello("È«±æµ¿");
+					//newë¡œ ìƒì„± -> ê²°í•©ì„±ì´ ë†’ì€ í”„ë¡œê·¸ë¨(Helloì— ì˜ì¡´) -> ë¹„ì¶”
+		String msg=hello.sayHello("í™ê¸¸ë™");
 		System.out.println(msg);
 	}
 }

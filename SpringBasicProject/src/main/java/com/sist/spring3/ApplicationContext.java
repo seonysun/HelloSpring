@@ -1,20 +1,19 @@
 package com.sist.spring3;
 import java.util.*;
 
-//Å¬·¡½º °ü¸®ÀÚ(ÄÁÅ×ÀÌ³Ê) -> ½ºÇÁ¸µ¿¡¼­ ÀÌ¹Ì Á¦ÀÛµÇ¾îÀÖÀ½
+//í´ë˜ìŠ¤ ê´€ë¦¬ì(ì»¨í…Œì´ë„ˆ) -> ìŠ¤í”„ë§ì—ì„œ ì´ë¯¸ ì œì‘ë˜ì–´ìˆìŒ
 public class ApplicationContext {
-	private Map clsMap=new HashMap(); //°ü¸®ÇÒ Å¬·¡½ºµéÀ» ÀúÀåÇÒ ÄÃ·º¼Ç »ı¼º
+	//ê´€ë¦¬í•  í´ë˜ìŠ¤ë“¤ì„ ì €ì¥í•  ì»¬ë ‰ì…˜ ìƒì„±
+	private Map clsMap=new HashMap(); 
+		//ìƒì„±ëœ ê°ì²´ í˜¸ì¶œ ê°€ëŠ¥í•˜ë„ë¡ ì—°ê²°í•´ë‘  -> ì‹±ê¸€í„´(ì²«ë²ˆì§¸ í•˜ë‚˜ë§Œ ìƒì„±, ì´í›„ ì¬ì‚¬ìš©) -> ë©”ëª¨ë¦¬ ì ˆì•½ ê°€ëŠ¥, ì—°ê²° ë‹¨ìˆœ
 	public ApplicationContext() {
 		clsMap.put("amodel", new AModel());
-					//key¿¡ ´ëÇÑ value°ªÀ¸·Î »ı¼ºÇÒ °´Ã¼ ¿¬°á
-		/*
-		»ı¼ºµÈ °´Ã¼ È£Ãâ °¡´ÉÇÏµµ·Ï ¿¬°áÇØµÒ -> ½Ì±ÛÅÏ(Ã¹¹øÂ° ÇÏ³ª¸¸ »ı¼º, ÀÌÈÄ Àç»ç¿ë) -> ¸Ş¸ğ¸® Àı¾à °¡´É, ¿¬°á ´Ü¼ø
-		*/
+					//key ë“±ë¡, keyì— ëŒ€í•œ valueê°’ìœ¼ë¡œ ìƒì„±í•  ê°ì²´ ì—°ê²°
 		clsMap.put("bmodel", new BModel());
 		clsMap.put("cmodel", new CModel());
 	}
 	public Object getBean(String key) {
-				//µî·ÏµÈ key·Î °´Ã¼ È£ÃâÇÏ´Â ¸Ş¼Òµå »ı¼º
+				//ë“±ë¡ëœ keyë¡œ ê°ì²´ í˜¸ì¶œí•˜ëŠ” ë©”ì†Œë“œ ìƒì„±
 		return clsMap.get(key);
 	}
 }
