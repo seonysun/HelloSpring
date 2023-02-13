@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 관리할 클래스 등록 -->
+	<bean id="a" class="com.sist.myapp.AModel" scope="prototype"/>
+											<!-- 
+											디폴트 : 싱글턴(객체 하나만 가지고 재사용) 
+											여러 개의 메모리 사용하고 싶을 경우 prototype 설정  -> Object 객체 clone 생성
+											 -->
+	<bean id="b" class="com.sist.myapp.BModel"/>
+	<bean id="c" class="com.sist.myapp.CModel"/>
+</beans>

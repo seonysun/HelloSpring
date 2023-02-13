@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 클래스 등록 -->
+	<bean id="sa1" class="com.sist.di1.Sawon">
+		<!-- 멤버변수 값 주입 : DI(setter DI)-->
+			<!-- 
+			DI 종류
+				- setter에 값 주입
+				- 생성자에 값 주입
+				- 메소드 호출(생성 시/소멸 시)
+			컨테이너
+			                       BeanFactory : core(DI)
+				                        |
+			                    ApplicationContext : core(DI, AOP)
+			                            |
+					  |                                    |
+			GenericApplicationContext		AnnotationConfigApplicationContext
+			WebApplicationContext(MVC)
+			 -->
+		<property name="sabun" value="1"></property>
+		<property name="name">
+			<value>홍길동</value>
+		</property>
+		<property name="dept" value="개발부"/>
+		<property name="job" value="대리"/>
+		<property name="pay" value="3000"/>
+	</bean>
+</beans>
