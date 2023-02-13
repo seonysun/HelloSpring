@@ -10,8 +10,7 @@ public class EmpDAO {
 	 *  - DI 패턴 방식
 	 *  	1) 생성자(constructor-arg) : 초기화
 	 *  	2) 메소드(property) : 변수값 대입(setter/getter), 자동 호출 메소드 등에서 사용
-	*/
-	
+	 */
 	//Setter(메소드) DI > XML을 통해 가져올 데이터 : 변수(getter/setter) -> p 태그로 등록
 	private String url,user,pwd; 
 	public String getUrl() {
@@ -76,7 +75,6 @@ public class EmpDAO {
 		}
 		return list;
 	}
-
 	//메소드 DI > 자동 호출 메소드 설정 -> 생성 시 : init-method="메소드명", 소멸 시 : destroy-method="메소드명"
 	public void init() {
 		System.out.println("==========사원 목록==========");
