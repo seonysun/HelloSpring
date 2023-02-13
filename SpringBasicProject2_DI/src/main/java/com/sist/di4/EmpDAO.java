@@ -50,6 +50,10 @@ public class EmpDAO {
 		} catch(Exception ex) {}
 	}
 	
+	//메소드 DI > 자동 호출 메소드 설정 -> 생성 시 : init-method="메소드명", 소멸 시 : destroy-method="메소드명"
+	public void init() {
+		System.out.println("==========사원 목록==========");
+	}
 	public List<EmpVO> empListData(){
 		List<EmpVO> list=new ArrayList<EmpVO>();
 		try {
@@ -74,9 +78,5 @@ public class EmpDAO {
 			disConnection();
 		}
 		return list;
-	}
-	//메소드 DI > 자동 호출 메소드 설정 -> 생성 시 : init-method="메소드명", 소멸 시 : destroy-method="메소드명"
-	public void init() {
-		System.out.println("==========사원 목록==========");
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainClass {
 	public static void main(String[] args) {
 		ApplicationContext app=new ClassPathXmlApplicationContext("app3.xml");
+		
 		Member m1=(Member)app.getBean("m1");
 		m1.print();
 		System.out.println();

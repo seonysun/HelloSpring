@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainClass {
 	public static void main(String[] args) {
 		ApplicationContext app=new ClassPathXmlApplicationContext("app2.xml");
+		
 		Sawon sa2=(Sawon)app.getBean("sa2");
 		System.out.println("사번:"+sa2.getSabun());
 		System.out.println("이름:"+sa2.getName());
