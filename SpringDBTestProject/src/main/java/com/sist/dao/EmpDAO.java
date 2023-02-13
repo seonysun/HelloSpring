@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.*;
-@Repository //DAO ¸Ş¸ğ¸®ÇÒ´ç
+@Repository //DAO ë©”ëª¨ë¦¬í• ë‹¹
 public class EmpDAO {
-	@Autowired //¸Ş¸ğ¸®ÇÒ´ç ¾î³ëÅ×ÀÌ¼Ç
-	private EmpMapper mapper; //Mapper(ÀÎÅÍÆäÀÌ½º) ¸Ş¸ğ¸®ÇÒ´ç -> ±¸ÇöµÈ Å¬·¡½º°ª ¹Ş±â
+	@Autowired //ë©”ëª¨ë¦¬í• ë‹¹ ì–´ë…¸í…Œì´ì…˜
+	private EmpMapper mapper; //Mapper(ì¸í„°í˜ì´ìŠ¤) ë©”ëª¨ë¦¬í• ë‹¹ -> êµ¬í˜„ëœ í´ë˜ìŠ¤ê°’ ë°›ê¸°
 	
 	public List<EmpVO> empListData(){
 		return mapper.empListData();
