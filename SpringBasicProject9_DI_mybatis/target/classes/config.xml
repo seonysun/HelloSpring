@@ -3,21 +3,23 @@
  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- Connection -->
-<!-- 태그 순서
-properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, 
-objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers? 
--->
-<!-- mapper의 종류
-mappers? : 선택 사항
-mapper* : 0번 이상 사용
-mapper+ : 한 번 이상 사용
-mapper| : 선택
-mapper : default, 반드시 한 번 사용
+<!-- 
+태그 순서
+	properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, 
+	objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers? 
+태그 종류 ex. mapper
+	mappers? : 선택 사항
+	mapper* : 0번 이상 사용
+	mapper+ : 한 번 이상 사용
+	mapper| : 선택
+	mapper : default, 반드시 한 번 사용
  -->
 <configuration>
+	<!-- VO 등록 : 하나씩 등록 or 패키지 단위로 등록 -->
 	<typeAliases>
 		<typeAlias type="com.sist.dao.FoodVO" alias="FoodVO"/>
 	</typeAliases>
+	<!-- mapper 등록 -->
 	<mappers>
 		<mapper resource="com/sist/dao/food-mapper.xml"/>
 	</mappers>
