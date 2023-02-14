@@ -11,16 +11,14 @@ public class XMLParse extends DefaultHandler{
 	}
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-		try
-		{
-			if(qName.equals("bean"))
-			{
+		try {
+			if(qName.equals("bean")) {
 				String id=attributes.getValue("id");
 				String cls=attributes.getValue("class");
 				Class className=Class.forName(cls);
 				Object obj=className.getDeclaredConstructor().newInstance();
 				map.put(id,obj);
 			}
-		}catch(Exception ex) {}
+		} catch(Exception ex) {}
 	}
 }

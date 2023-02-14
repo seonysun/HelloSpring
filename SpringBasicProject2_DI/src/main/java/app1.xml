@@ -2,7 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<!-- 클래스 등록 -->
+	<!-- 
+	클래스 등록
+		- 모든 클래스를 등록하는 것은 아님 -> 여러 클래스에서 호출되는 클래스(기능(컴포넌트)을 가진 클래스)만 등록
+		- 등록에서 제외 : 데이터형 클래스(자바 기본 데이터형, 사용자 정의 데이터형(VO))
+		- 등록 : 사용자 정의 클래스 -> Annotation
+					- 패키지 단위로 등록
+			       라이브러리 클래스 -> MyBatis, OXM, MVC(ViewResolver)
+					- <bean>으로 필요한 클래스만 선별하여 등록
+		- 생성/소멸 부분은 스프링 자체 담당
+		- 특별한 경우가 아니면 싱글턴으로 재사용
+	 -->
 	<bean id="sa1" class="com.sist.di1.Sawon">
 		<!-- 멤버변수 값 주입 : DI(setter DI)-->
 			<!-- 

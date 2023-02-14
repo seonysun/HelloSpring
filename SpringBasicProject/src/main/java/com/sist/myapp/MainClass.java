@@ -16,6 +16,7 @@ public class MainClass {
 		ApplicationContext app=new ClassPathXmlApplicationContext("app.xml");
 			//스프링 라이브러리 -> 경로 src/main/java까지 인식, 다른 패키지 안에 생성할 경우 경로 추가로 줘야 함
 		AModel a=(AModel)app.getBean("a");
+				//getBean의 리턴형이 Object이므로 형변환 필요
 		a.display();
 		AModel a1=(AModel)app.getBean("a");
 		a1.display();

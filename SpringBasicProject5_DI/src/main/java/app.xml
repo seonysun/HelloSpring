@@ -4,10 +4,11 @@
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<!-- 순서
+	<!-- 파싱 순서
 		1) 모든 bean 태그에 등록된 클래스 메모리 할당
 		2) 메모리 할당된 클래스의 setter DI 값 주입
-		=> dao 생성시 사용되는 ds 객체 생성 맨 아래에 써도 정상 작동
+		=> 소스 순서와 상관없이 객체 생성이 먼저
+			-> dao 생성시 사용되는 ds 객체 생성 맨 아래에 써도 정상 작동
 	 -->
 	<bean id="ds" class="com.sist.commons.DataSource"
 		p:driver="oracle.jdbc.driver.OracleDriver"

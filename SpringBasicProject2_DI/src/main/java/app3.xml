@@ -4,7 +4,7 @@
 	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<bean id="m1" class="com.sist.di3.Member">
-		<!-- 생성자 default : 매개변수 없는 경우 -> 매개변수 있는 경우 constructor-arg 설정 해줘야 함 -->
+		<!-- 생성자 default : 매개변수 없는 경우 => 매개변수 있는 경우 constructor-arg 설정 필요 -->
 		<constructor-arg value="1" index="0"/>
 		<constructor-arg value="박문수" index="1"/>
 		<constructor-arg value="서울" index="2"/>
