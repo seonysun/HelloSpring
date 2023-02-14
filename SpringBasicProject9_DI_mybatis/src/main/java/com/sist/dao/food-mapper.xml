@@ -15,7 +15,7 @@
 	select 태그 내 속성
 		1) id : 구분자
 		2) resultType : SQL 실행 후 값 저장할 때 데이터형
-		3) parameterType : ?에 값 설정할 때 데이터형
+		3) parameterType : SQL 내에서 필요한 값(? 값) 설정할 때 데이터형
 		- 각각 한 번씩만 사용 가능
 		- 여러개 설정 필요할 때는 모두 포함하는 타입으로 묶어서 설정(VO/HashMap)
 			ex. name=? AND address=? parameterType="FoodVO"
@@ -26,5 +26,7 @@
 			ex. resultType="FoodVO"
 					selectOne("foodDetailData")
 					selectList("foodListData")
+		- ?에 해당하는 값 : #{} -> 값 직접 대입
+						${} -> 테이블, 컬럼명
 	 -->
 </mapper>
