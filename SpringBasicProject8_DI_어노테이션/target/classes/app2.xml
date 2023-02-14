@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:component-scan base-package="com.sist.model"/>
+	<!-- 
+	클래스 구분자 : 아래 어노테이션 중 하나 있으면 패키지 등록 시 클래스 메모리 할당 자동 진행
+		- @Component : 일반 클래스(MainClass, JSoup(크롤링), XML 파싱, JSON 생성 등)
+		- @Repository : 저장소(DAO)
+		- @Service : 기능 통합 BI(DAO 여러개 통합)
+		- @Controller : 모델 클래스(웹) 화면에서 페이지 지정
+		- @RestController : 모델 클래스(웹) JSON, 일반 데이터 전송 -> Ajax, Vue, React
+		- @ControllerAdvice : 웹에서 공통으로 사용되는 예외처리
+		- @Configuration : 자바로 환경 설정
+	 -->
+</beans>
