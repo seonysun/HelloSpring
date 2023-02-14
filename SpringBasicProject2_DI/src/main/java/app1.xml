@@ -14,17 +14,17 @@
 		- 특별한 경우가 아니면 싱글턴으로 재사용
 	 -->
 	<bean id="sa1" class="com.sist.di1.Sawon">
-		<!-- 멤버변수 값 주입 : DI(setter DI)-->
-			<!-- 
-			DI 종류
-				- setter에 값 주입
+		<!-- 멤버변수 값 주입 : DI(setter DI)
+			- DI 종류
 				- 생성자에 값 주입
-				- 메소드 호출(생성 시/소멸 시)
-			컨테이너
+				- setter 메소드에 값 주입
+				- 메소드 호출(생성 시/소멸 시 자동 호출)
+			- 컨테이너(클래스 관리)
 			                       BeanFactory : core(DI)
 				                        |
 			                    ApplicationContext : core(DI, AOP)
 			                            |
+			          ______________________________________
 					  |                                    |
 			GenericApplicationContext		AnnotationConfigApplicationContext
 			WebApplicationContext(MVC)
