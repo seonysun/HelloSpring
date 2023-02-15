@@ -10,10 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = "com.sist.*")
-//<context:component-scan base-package="com.sist.*"/> : VO, Service
 @MapperScan(basePackages = "com.sist.mapper")
-//<mybatis-spring:scan base-package="com.sist.mapper" factory-ref="ssf"/> : Mapper
-public class FoodConfig {
+public class SeoulConfig {
 	@Bean("ds")
 	public BasicDataSource basicDataSource() {
 		BasicDataSource ds=new BasicDataSource();
@@ -31,6 +29,5 @@ public class FoodConfig {
 		SqlSessionFactoryBean ssf=new SqlSessionFactoryBean();
 		ssf.setDataSource(basicDataSource());
 		return ssf.getObject();
-				//getObject 형변환 시 SqlSessionFactory로 리턴
 	}
 }
