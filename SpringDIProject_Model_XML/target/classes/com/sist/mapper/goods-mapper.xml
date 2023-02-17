@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.goods-mapper">
+	<select id="goodsListData" resultType="GoodsVO">
+		SELECT no,name,price,rownum
+		FROM (SELECT no,goods_name as name,goods_price as price 
+		FROM goods_all 
+		ORDER BY no)
+		WHERE rownum&lt;=30
+	</select>
+</mapper>
