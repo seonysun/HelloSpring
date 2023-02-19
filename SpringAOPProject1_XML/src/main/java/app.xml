@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<bean id="mc" class="com.sist.myapp.MainClass"
+		p:dao-ref="dao"
+	/>
+	<bean id="dao" class="com.sist.dao.MovieDAO"/>
+
+	<!-- AOP : 공통으로 사용되는 메소드 설정, 호출 시기 정해줌 -->
+	<bean id="aspect" class="com.sist.aop.MyAspect"/>
+	<aop:config>
+		<aop:aspect ref="aspect">
+			<aop:before method="getConnection" pointcut="execution(* com.sist.dao.MovieDAO.*(..))"/>
+			<aop:after method="disConnection" pointcut="execution(* com.sist.dao.MovieDAO.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+	<!-- pointcut="execution(* com.sist.dao.MovieDAO.*(..))" : MovieDAO가 가진 모든 메소드에 aop 설정 -->
+</beans>

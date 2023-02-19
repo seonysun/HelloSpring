@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+   <bean id="mc" class="com.sist.myapp.MainClass"
+     p:dao-ref="dao"
+   />
+   <bean id="dao" class="com.sist.model.EmpDAO"/>
+   <bean id="aspect" class="com.sist.aop.ModelAspect"
+     p:dao-ref="dao"
+   />
+   <aop:config>
+     <aop:aspect ref="aspect">
+       <aop:before method="before" pointcut="execution(* com.sist.model.EmpDAO.emp*(..))"/>
+       <aop:after method="after" pointcut="execution(* com.sist.model.EmpDAO.emp*(..))"/>
+       <aop:around method="around" pointcut="execution(* com.sist.model.EmpDAO.emp*(..))"/>
+       <aop:after-returning method="afterReturning" pointcut="execution(* com.sist.model.EmpDAO.emp*(..))" returning="obj"/>
+       <aop:after-throwing method="afterThrowing" pointcut="execution(* com.sist.model.EmpDAO.emp*(..))" throwing="ex"/>
+     </aop:aspect>
+   </aop:config>
+</beans>
