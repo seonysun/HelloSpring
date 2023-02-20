@@ -40,7 +40,6 @@ public class EmpDAO {
     			list.add(vo);
     		}
     		rs.close();
-    		
     	} catch(Exception ex) {
     		ex.printStackTrace();
     	}
