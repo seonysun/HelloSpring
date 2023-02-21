@@ -18,8 +18,8 @@
                        ViewResolver : JSP 찾아줌
     	-->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/"
-		p:suffix=".jsp"
-	/>
+    	p:prefix="/"
+    	p:suffix=".jsp"
+    />
 		<!-- 확장자 자동 입력되므로 입력하지 않아도 됨 -->
 </beans>

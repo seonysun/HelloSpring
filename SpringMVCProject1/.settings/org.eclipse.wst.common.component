@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
     	
-    <wb-module deploy-name="SpringAOPProject4_Transaction">
+    <wb-module deploy-name="SpringMVCProject1">
                 
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         		
@@ -12,7 +12,7 @@
         		
         <property name="java-output-path" value="target/classes"/>
                 
-        <property name="context-root" value="myapp"/>
+        <property name="context-root" value="web"/>
         	
     </wb-module>
     

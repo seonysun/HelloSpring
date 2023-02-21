@@ -39,17 +39,17 @@
 	-->
 	<!-- Controller 등록 -->
 	<servlet>
-		<servlet-name>dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/application-*.xml/</param-value>
-		</init-param>
-	</servlet>
+      <servlet-name>dispatcher</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/config/application-*.xml</param-value>
+      </init-param>
+   	</servlet>
 	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
+      <servlet-name>dispatcher</servlet-name>
+      <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
 	
 	<!-- 한글 변환 코드 -->
 	<filter>
