@@ -36,7 +36,7 @@
 		<div class="row">
 			<div class="text-center">
 				<a href="location.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-danger">이전</a>
-				${curpage }page / ${totalpage }pages
+				${curpage } page / ${totalpage } pages
 				<a href="location.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-danger">다음</a>
 			</div>
 		</div>
