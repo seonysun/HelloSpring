@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:component-scan base-package="com.sist.*"/>
+		<!-- 스프링
+			1) 사용자 정의 클래스 관리 : 클래스 전송(객체 생성 ~ 객체 소멸)
+			2) JSP 찾아서 request 전송 => Spring MVC
+				- 사용자 요청(JSP 파일 요청) : .do
+				- DispatcherServlet 호출
+					cf. .do와 DispatcherServlet 연결은 web.xml에서 설정
+				- HandlerMapping : @Controller, @RestController 올려진 클래스 호출
+				- @RequestMapping(@GetMapping, @PostMapping) 올려진 메소드 호출
+				- Model & return(View) 호출
+				- ViewResolver : JSP 찾고 request 전송
+				- View(JSP)가 데이터 받아서 출력
+				- 사용자 브라우저로 전송
+		 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/"
+	 	p:suffix=".jsp"
+	/>
+</beans>
