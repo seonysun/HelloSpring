@@ -8,6 +8,10 @@ public interface FoodMapper {
 	//카테고리
 	@Select({
 		"<script>"
+			/* 동적 쿼리 : 조건에 따라 쿼리문 달라짐
+			 * 	- <if> <choose> <forEach> <trim> <where> <set>
+			 * 	- 태그 필요 -> script 필수
+			 * */
 		+ "SELECT cno,title,poster,subject "
 		+ "FROM project_food_category "
 		+ "WHERE "
@@ -38,4 +42,20 @@ public interface FoodMapper {
 	@Select("SELECT * FROM project_food "
 			+ "WHERE fno=#{fno}")
 	public FoodVO foodDetailData(int fno);
+	
+	//맛집검색
+	@Select({
+		"<script>"
+		+ "SELECT fno,name,poster,num "
+		+ "FROM (SELECT fno,name,poster,rownum as num "
+		+ "FROM (SELECT fno,name,poster "
+		+ "FROM food_location "
+		+ "<if test=\"ss!='all'\">"
+		+ "WHERE address LIKE '%'||#{ss}||'%'"
+		+ "</if>"
+		+ "ORDER BY fno))"
+		+ "WHERE num BETWEEN #{start} AND #{end}"
+		+ "</script>"
+	})
+	public List<FoodVO> foodFindData(Map map);
 }

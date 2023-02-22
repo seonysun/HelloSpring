@@ -11,7 +11,6 @@ import com.sist.mapper.*;
 public class FoodDAO {
 	@Autowired
 	private FoodMapper mapper;
-	
 	//카테고리
 	public List<CategoryVO> categoryListData(Map map){
 		return mapper.categoryListData(map);
@@ -28,5 +27,10 @@ public class FoodDAO {
 	//맛집상세
 	public FoodVO foodDetailData(int fno) {
 		return mapper.foodDetailData(fno);
+	}
+	
+	//맛집검색
+	public List<FoodVO> foodFindData(Map map){
+		return mapper.foodFindData(map);
 	}
 }

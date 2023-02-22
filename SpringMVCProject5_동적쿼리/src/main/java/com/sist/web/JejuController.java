@@ -44,4 +44,24 @@ public class JejuController {
 		model.addAttribute("endpage", endpage);
 		return "jeju/list";
 	}
+	
+	@GetMapping("jeju/detail.do")
+	public String jeju_detail(int no, Model model) {
+		JejuLocationVO vo=dao.jejuDetailData(no);
+		String info=vo.getInfo();
+		if(info.indexOf("^")>=0) {
+			//info 이미지가 여러장인 경우 잘라서 1개만 저장
+			info=info.substring(0, info.indexOf("^"));
+			vo.setInfo(info);
+		}
+		vo.setInfo(info);
+		String addr=vo.getAddr();
+		String[] addrs=addr.split(" ");
+		Map map=new HashMap();
+		map.put("addr", addrs[1].trim());
+		List<JejuFoodVO> list=dao.jejuFoodData(map);
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+		return "jeju/detail";
+	}
 }

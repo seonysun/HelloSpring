@@ -27,11 +27,11 @@ h1{
 			<c:forEach var="vo" items="${list }">
 			  <div class="col-md-3">
 			    <div class="thumbnail">
-			      <a href="#">
+			      <a href="../jeju/detail.do?no=${vo.no }">
 			        <img src="${vo.poster }" style="width:250px;height:200px">
 			        <div class="caption">
 			        	<p>${vo.title }</p>
-			        	<p>입장료: ${vo.price }</p>
+			        	<p>입장료: ${vo.price }원</p>
 			        </div>
 			      </a>
 			    </div>
