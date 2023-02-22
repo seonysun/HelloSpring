@@ -54,11 +54,12 @@ public class FoodController {
 	@RequestMapping("food/find.do")
 		//검색 처음 실행 시 get(a 태그), 검색어 입력 시 post(form 태그) -> GET/POST 방식 동시 처리 requestMapping
 	public String food_find(String addr, String page, Model model) {
-		Map map=new HashMap();
 		String s="";
 		if(addr==null || addr.equals("")) s="all";
 		else s=addr;
+		Map map=new HashMap();
 		map.put("ss", s);
+
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
 		int rowsize=20;
@@ -66,7 +67,9 @@ public class FoodController {
 		int end=rowsize*curpage;
 		map.put("start", start);
 		map.put("end", end);
+		
 		List<FoodVO> list=dao.foodFindData(map);
+		
 		model.addAttribute("list", list);
 		return "food/find";
 	}

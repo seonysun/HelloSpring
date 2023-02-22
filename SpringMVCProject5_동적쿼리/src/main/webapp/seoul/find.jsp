@@ -24,9 +24,9 @@ h1{
 	<div class="container">
 		<div class="row">
 			<div class="text-center">
-				<a href="../seoul/list.do?cate=1" class="btn btn-lg btn-danger">서울 명소</a>
-				<a href="../seoul/list.do?cate=2" class="btn btn-lg btn-success">서울 자연</a>
-				<a href="../seoul/list.do?cate=3" class="btn btn-lg btn-primary">서울 쇼핑</a>
+				<a href="#" class="btn btn-lg btn-danger">서울 명소</a>
+				<a href="#" class="btn btn-lg btn-success">서울 자연</a>
+				<a href="#" class="btn btn-lg btn-primary">서울 쇼핑</a>
 			</div>
 			<div style="height: 10px"></div>
 			<div class="text-center">
@@ -54,13 +54,13 @@ h1{
 			<div class="text-center">
 				<ul class="pagination">
 				  <c:if test="${startpage>1 }">
-					<li><a href="../seoul/list.do?page=${startpage-1 }">&lt;</a></li>
+					<li><a href="../seoul/find.do?page=${startpage-1 }">&lt;</a></li>
 				  </c:if>
 					<c:forEach var="i" begin="${startpage }" end="${endpage }">
-						<li ${curpage==i?"class=active":"" }><a href="../seoul/list.do?page=${i }">${i }</a></li>
+						<li ${curpage==i?"class=active":"" }><a href="../seoul/find.do?page=${i }">${i }</a></li>
 					</c:forEach>
 				  <c:if test="${endpage<totalpage }">
-					<li><a href="../seoul/list.do?page=${endpage+1 }">&gt;</a></li>
+					<li><a href="../seoul/find.do?page=${endpage+1 }">&gt;</a></li>
 				  </c:if>
 				</ul>
 			</div>

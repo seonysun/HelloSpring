@@ -17,12 +17,15 @@ public class JejuController {
 	public String jeju_list(String page, Model model) {
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
-		Map map=new HashMap();
+		int totalpage=dao.jejuTotalPage();
+
 		int rowsize=20;
 		int start=rowsize*(curpage-1)+1;
 		int end=rowsize*curpage;
+		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
+		
 		List<JejuLocationVO> list=dao.jejuLocationListData(map);
 		for(JejuLocationVO vo:list) {
 			String title=vo.getTitle();
@@ -32,11 +35,12 @@ public class JejuController {
 			}
 			vo.setTitle(title);
 		}
-		int totalpage=dao.jejuTotalPage();
+
 		final int BLOCK=5;
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
+		
 		model.addAttribute("list", list);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
@@ -48,6 +52,7 @@ public class JejuController {
 	@GetMapping("jeju/detail.do")
 	public String jeju_detail(int no, Model model) {
 		JejuLocationVO vo=dao.jejuDetailData(no);
+		
 		String info=vo.getInfo();
 		if(info.indexOf("^")>=0) {
 			//info 이미지가 여러장인 경우 잘라서 1개만 저장
@@ -55,11 +60,14 @@ public class JejuController {
 			vo.setInfo(info);
 		}
 		vo.setInfo(info);
+		
 		String addr=vo.getAddr();
 		String[] addrs=addr.split(" ");
 		Map map=new HashMap();
 		map.put("addr", addrs[1].trim());
+		
 		List<JejuFoodVO> list=dao.jejuFoodData(map);
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		return "jeju/detail";

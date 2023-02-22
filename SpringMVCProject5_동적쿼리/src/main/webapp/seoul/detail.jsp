@@ -22,64 +22,40 @@ h1{
 </head>
 <body>
 	<div class="container">
+		<h3 class="text-center" style="color: gray">${vo.title }</h3>
+		<table class="table">
+		  <tr>
+		  	<td><img src="${vo.poster }" style="width: 1200px;height: 600px"></td>
+		  </tr>
+		  <tr>
+		  	<td>${vo.address }</td>
+		  </tr>
+		  <tr>
+		  	<td>${vo.msg }</td>
+		  </tr>
+		  <tr>
+		  	<td style="align-content: center">
+		  		<input type=button class="btn btn-sm btn-primary" value="목록" onclick="javascript:history.back()">
+		  	</td>
+		  </tr>
+		</table>
+		<div style="height: 10px"></div>
+
+		<h3>인근 맛집</h3>
+		<hr>
 		<div class="row">
-			<table class="table">
-			  <tr>
-			  	<c:forTokens items="${vo.poster }" delims="^" var="img">
-			  		<td><img src="${img }" style="width: 100%"></td>
-			  	</c:forTokens>
-			  </tr>
-			</table>
-		</div>
-		<div style="height: 20px"></div>
-		<div class="row">
-			<div class="col-sm-8">
-				<table class="table">
-				  <tr>
-				  	<td colspan="2">
-				  		<h3>${vo.name }&nbsp;<span style="color: orange">${vo.score }</span></h3>
-				  	</td>
-				  </tr>
-				  <tr>
-				  	<th width=20%>주소</th>
-				  	<td width=80%>${vo.address }</td>
-				  </tr>
-				  <tr>
-				  	<th width=20%>전화</th>
-				  	<td width=80%>${vo.tel }</td>
-				  </tr>
-				  <tr>
-				  	<th width=20%>음식종류</th>
-				  	<td width=80%>${vo.type }</td>
-				  </tr>
-				  <tr>
-				  	<th width=20%>가격대</th>
-				  	<td width=80%>${vo.price }</td>
-				  </tr>
-				  <tr>
-				  	<th width=20%>주차</th>
-				  	<td width=80%>${vo.parking }</td>
-				  </tr>
-				  <tr>
-				  	<th width=20%>영업시간</th>
-				  	<td width=80%>${vo.time }</td>
-				  </tr>
-				  <tr>
-				  	<th width=20%>메뉴</th>
-				  	<td width=80%>${vo.menu }</td>
-				  </tr>
-				  <tr>
-				  	<td colspan=2 class="text-right">
-				  		<b>맛있다(${vo.good })&nbsp;괜찮다(${vo.soso })&nbsp;별로(${vo.bad })</b>&nbsp;
-				  		<input type=button class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
-				  																<!-- hit 수 등 업데이트 필요한 데이터 포함 시에는 링크로 줘야 함 -->
-				  	</td>
-				  </tr>
-				</table>
-			</div>
-			<div class="col-sm-4">
-			
-			</div>
+			<c:forEach var="fvo" items="${list }">
+			  <div class="col-md-3">
+			    <div class="thumbnail">
+			      <a href="#">
+			        <img src="${fvo.poster }" style="width:250px;height:200px">
+			        <div class="caption">
+			        	<p>${fvo.name }</p>
+			        </div>
+			      </a>
+			    </div>
+			  </div>
+			</c:forEach>
 		</div>
 	</div>
 </body>
