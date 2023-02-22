@@ -20,7 +20,9 @@ public class FoodController {
 		if(no==null) no="1";
 		Map map=new HashMap();
 		map.put("cno", no);
+		
 		List<CategoryVO> list=dao.categoryListData(map);
+		
 		model.addAttribute("list", list);
 		return "food/category";
 	}
@@ -39,6 +41,7 @@ public class FoodController {
 			poster=poster.replace("#", "&");
 			fvo.setPoster(poster);
 		}
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		return "food/list";
@@ -47,6 +50,7 @@ public class FoodController {
 	@GetMapping("food/detail.do")
 	public String food_detail(int fno, Model model) {
 		FoodVO vo=dao.foodDetailData(fno);
+		
 		model.addAttribute("vo", vo);
 		return "food/detail";
 	}

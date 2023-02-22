@@ -13,11 +13,13 @@ public interface SeoulMapper {
 	public List<SeoulVO> seoulListData(Map map);
 	
 	@Select("SELECT CEIL(COUNT(*)/20.0) FROM ${table}")
-	public int seoulTotalPage(String table);
+	public int seoulTotalPage(Map map);
+							//parameterType을 String으로 받을 시 오류.. 왜????
+							//controller에서 cate 널값 처리 후 String table로 넣었을 때 null값인 경우는 없음
 	
-	@Select("SELECT * FROM ${table} "
+	@Select("SELECT * FROM seoul_location "
 			+ "WHERE no=#{no}")
-	public SeoulVO seoulDetailData(Map map);
+	public SeoulVO seoulDetailData(int no);
 	
 	@Select("SELECT fno,name,poster,type,rownum "
 			+ "FROM food_location "

@@ -54,13 +54,13 @@ h1{
 			<div class="text-center">
 				<ul class="pagination">
 				  <c:if test="${startpage>1 }">
-					<li><a href="../seoul/list.do?page=${startpage-1 }">&lt;</a></li>
+					<li><a href="../seoul/list.do?cate=${cate }&page=${startpage-1 }">&lt;</a></li>
 				  </c:if>
 					<c:forEach var="i" begin="${startpage }" end="${endpage }">
-						<li ${curpage==i?"class=active":"" }><a href="../seoul/list.do?page=${i }">${i }</a></li>
+						<li ${curpage==i?"class=active":"" }><a href="../seoul/list.do?cate=${cate }&page=${i }">${i }</a></li>
 					</c:forEach>
 				  <c:if test="${endpage<totalpage }">
-					<li><a href="../seoul/list.do?page=${endpage+1 }">&gt;</a></li>
+					<li><a href="../seoul/list.do?cate=${cate }&page=${endpage+1 }">&gt;</a></li>
 				  </c:if>
 				</ul>
 			</div>

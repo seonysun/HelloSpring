@@ -16,15 +16,15 @@ public class SeoulController {
 	
 	@GetMapping("seoul/list.do")
 	public String seoul_list(String page, String cate, Model model) {
-		String[] category= {"", "location","nature","shop"};
 		if(cate==null) cate="1";
+		String[] category= {"", "location","nature","shop"};
 		String table="seoul_"+category[Integer.parseInt(cate)];
 		Map map=new HashMap();
 		map.put("table", table);
 		
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
-		int totalpage=dao.seoulTotalPage(table);
+		int totalpage=dao.seoulTotalPage(map);
 		
 		int rowsize=20;
 		int start=rowsize*(curpage-1)+1;
@@ -33,12 +33,21 @@ public class SeoulController {
 		map.put("end", end);
 		
 		List<SeoulVO> list=dao.seoulListData(map);
+		for(SeoulVO vo:list) {
+			String title=vo.getTitle();
+			if(title.length()>16) {
+				title=title.substring(0, 15)+"...";
+				vo.setTitle(title);
+			}
+			vo.setTitle(title);
+		}
 		
 		final int BLOCK=5;
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
 		
+		model.addAttribute("cate", cate);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("startpage", startpage);
@@ -48,15 +57,15 @@ public class SeoulController {
 	}
 	
 	@GetMapping("seoul/detail.do")
-	public String seoul_detail(int no, String cate, Model model) {
-		String[] category= {"", "location","nature","shop"};
-		if(cate==null) cate="1";
-		String table="seoul_"+category[Integer.parseInt(cate)];
-		Map map=new HashMap();
-		map.put("table", table);
-		map.put("no", no);
+	public String seoul_detail(int no, Model model) {
+//		if(cate==null) cate="1";
+//		String[] category= {"", "location","nature","shop"};
+//		String table="seoul_"+category[Integer.parseInt(cate)];
+//		Map map=new HashMap();
+//		map.put("table", table);
+//		map.put("no", no);
 		
-		SeoulVO vo=dao.seoulDetailData(map);
+		SeoulVO vo=dao.seoulDetailData(no);
 		
 		String addr=vo.getAddress(); 
 			//03177 서울 종로구 새문안로 55 (신문로2가, 서울역사박물관)
@@ -86,17 +95,26 @@ public class SeoulController {
 		map.put("end", end);
 		
 		List<SeoulVO> list=dao.seoulFindData(map);
+		for(SeoulVO vo:list) {
+			String title=vo.getTitle();
+			if(title.length()>16) {
+				title=title.substring(0, 15)+"...";
+				vo.setTitle(title);
+			}
+			vo.setTitle(title);
+		}
 		
 		final int BLOCK=5;
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
 		
+		model.addAttribute("addr", addr);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("list", list);
-		return "seoul/list";
+		return "seoul/find";
 	}
 }

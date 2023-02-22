@@ -15,12 +15,12 @@ public class SeoulDAO {
 		return mapper.seoulListData(map);
 	}
 	
-	public int seoulTotalPage(String table) {
-		return mapper.seoulTotalPage(table);
+	public int seoulTotalPage(Map map) {
+		return mapper.seoulTotalPage(map);
 	}
 	
-	public SeoulVO seoulDetailData(Map map) {
-		return mapper.seoulDetailData(map);
+	public SeoulVO seoulDetailData(int no) {
+		return mapper.seoulDetailData(no);
 	}
 	
 	public List<FoodVO> foodListData(String addr){
