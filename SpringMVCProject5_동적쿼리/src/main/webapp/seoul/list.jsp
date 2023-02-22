@@ -41,7 +41,7 @@ h1{
 			<c:forEach var="vo" items="${list }">
 				<div class="col-md-3">
 				    <div class="thumbnail">
-				      <a href="../seoul/detail.do?no=${vo.no }">
+				      <a href="../seoul/detail.do?cate=${cate }&no=${vo.no }">
 				        <img src="${vo.poster }" title="${vo.title }" style="width:250px;height:200px">
 				        <div class="caption"><p>${vo.title }</p></div>
 				      </a>

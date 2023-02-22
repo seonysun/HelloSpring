@@ -19,8 +19,8 @@ public class SeoulDAO {
 		return mapper.seoulTotalPage(map);
 	}
 	
-	public SeoulVO seoulDetailData(int no) {
-		return mapper.seoulDetailData(no);
+	public SeoulVO seoulDetailData(Map map) {
+		return mapper.seoulDetailData(map);
 	}
 	
 	public List<FoodVO> foodListData(String addr){

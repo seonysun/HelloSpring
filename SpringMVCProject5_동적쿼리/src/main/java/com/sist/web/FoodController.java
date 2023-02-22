@@ -60,6 +60,7 @@ public class FoodController {
 	public String food_find(String addr, String page, Model model) {
 		String s="";
 		if(addr==null || addr.equals("")) s="all";
+			//웹에서 매개변수 넘어올 때 null이 아닌 ""으로 넘어오는 경우가 많음 -> 처리 시 주의
 		else s=addr;
 		Map map=new HashMap();
 		map.put("ss", s);

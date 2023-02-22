@@ -57,19 +57,21 @@ public class SeoulController {
 	}
 	
 	@GetMapping("seoul/detail.do")
-	public String seoul_detail(int no, Model model) {
-//		if(cate==null) cate="1";
-//		String[] category= {"", "location","nature","shop"};
-//		String table="seoul_"+category[Integer.parseInt(cate)];
-//		Map map=new HashMap();
-//		map.put("table", table);
-//		map.put("no", no);
+	public String seoul_detail(int no, String cate, Model model) {
+		if(cate==null) cate="1";
+		String[] category= {"", "location","nature","shop"};
+		String table="seoul_"+category[Integer.parseInt(cate)];
+		Map map=new HashMap();
+		map.put("table", table);
+		map.put("no", no);
 		
-		SeoulVO vo=dao.seoulDetailData(no);
+		SeoulVO vo=dao.seoulDetailData(map);
 		
-		String addr=vo.getAddress(); 
+		String addr="";
+			//address로 받아서 바로 처리하면 null값 ...왜????????????
+		String address=vo.getAddress(); 
 			//03177 서울 종로구 새문안로 55 (신문로2가, 서울역사박물관)
-		String[] addrs=addr.split(" ");
+		String[] addrs=address.split(" ");
 		addr=addrs[2].trim();
 		
 		List<FoodVO> list=dao.foodListData(addr);

@@ -55,7 +55,7 @@ public class JejuController {
 		
 		String info=vo.getInfo();
 		if(info.indexOf("^")>=0) {
-			//info 이미지가 여러장인 경우 잘라서 1개만 저장
+			//info 이미지가 여러개인 경우 잘라서 한개만 저장 -> 이미지 한개인 경우 ^가 존재하지 않으므로 결과값 -1
 			info=info.substring(0, info.indexOf("^"));
 			vo.setInfo(info);
 		}
