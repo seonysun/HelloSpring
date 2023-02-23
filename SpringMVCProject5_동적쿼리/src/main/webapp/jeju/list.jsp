@@ -27,7 +27,7 @@ h1{
 			<c:forEach var="vo" items="${list }">
 			  <div class="col-md-3">
 			    <div class="thumbnail">
-			      <a href="../jeju/detail.do?no=${vo.no }">
+			      <a href="../jeju/detail_before.do?no=${vo.no }">
 			        <img src="${vo.poster }" style="width:250px;height:200px">
 			        <div class="caption">
 			        	<p>${vo.title }</p>
@@ -39,6 +39,7 @@ h1{
 			</c:forEach>
 		</div>
 		<div style="height: 10px"></div>
+		
 		<div class="row">
 			<div class="text-center">
 				<ul class="pagination">
@@ -53,6 +54,24 @@ h1{
 				  </c:if>
 				</ul>
 			</div>
+		</div>
+		<div style="height: 10px"></div>
+		
+		<h3>최근 방문 장소</h3>
+		<hr>
+		<div class="row">
+			<c:forEach var="vo" items="${cList }">
+			  <div class="col-md-3">
+			    <div class="thumbnail">
+			      <a href="../jeju/detail.do?no=${vo.no }">
+			        <img src="${vo.poster }" style="width:250px;height:200px">
+			        <div class="caption">
+			        	<p>${vo.title }</p>
+			        </div>
+			      </a>
+			    </div>
+			  </div>
+			</c:forEach>
 		</div>
 	</div>
 </body>

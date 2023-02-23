@@ -34,8 +34,8 @@ h1{
 		  	<td>${vo.msg }</td>
 		  </tr>
 		  <tr>
-		  	<td style="align-content: center">
-		  		<input type=button class="btn btn-sm btn-primary" value="목록" onclick="javascript:history.back()">
+		  	<td class="text-right">
+		  		<a href="../seoul/list.do" class="btn btn-sm btn-primary">목록</a>
 		  	</td>
 		  </tr>
 		</table>

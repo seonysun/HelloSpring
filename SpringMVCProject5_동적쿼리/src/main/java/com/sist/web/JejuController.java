@@ -1,5 +1,10 @@
 package com.sist.web;
 import java.util.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.sist.vo.*;
 import com.sist.dao.*;
 
@@ -7,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class JejuController {
@@ -14,7 +20,8 @@ public class JejuController {
 	private JejuDAO dao;
 	
 	@GetMapping("jeju/list.do")
-	public String jeju_list(String page, Model model) {
+	public String jeju_list(String page, Model model, HttpServletRequest request) {
+														//쿠키 받아올 때는 request 필요
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
 		int totalpage=dao.jejuTotalPage();
@@ -41,12 +48,38 @@ public class JejuController {
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
 		
+		Cookie[] cookies=request.getCookies();
+		List<JejuLocationVO> cList=new ArrayList<JejuLocationVO>();
+		if(cookies!=null) {
+			for(int i=cookies.length-1;i>=0;i--) {
+				if(cookies[i].getName().startsWith("jeju")) {
+					String no=cookies[i].getValue();
+					JejuLocationVO vo=dao.jejuDetailData(Integer.parseInt(no));
+					cList.add(vo);
+				}
+			}
+		}
+		
 		model.addAttribute("list", list);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
+		model.addAttribute("cList", cList);
 		return "jeju/list";
+	}
+	
+	@GetMapping("jeju/detail_before.do")
+	public String jeju_detail_before(String no, HttpServletResponse response, RedirectAttributes ra) {
+												//쿠키는 내장객체 아니므로 전송할 때 response 필요
+		Cookie cookie=new Cookie("jeju"+no, no); //쿠키 생성
+						//Cookie(String name, String value) -> no int로 받으면 변환해야 함
+		cookie.setPath("/"); //경로 지정
+		cookie.setMaxAge(60*60*24); //저장기간 설정 : 24h
+		response.addCookie(cookie); //쿠키 전송
+		ra.addAttribute("no", no);
+			//GET 방식으로 parameter redirect 경로에 함께 전달
+		return "redirect:detail.do";
 	}
 	
 	@GetMapping("jeju/detail.do")

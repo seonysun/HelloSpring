@@ -1,5 +1,10 @@
 package com.sist.web;
 import java.util.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.sist.vo.*;
 import com.sist.dao.*;
 
@@ -8,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class SeoulController {
@@ -15,7 +21,7 @@ public class SeoulController {
 	private SeoulDAO dao;
 	
 	@GetMapping("seoul/list.do")
-	public String seoul_list(String page, String cate, Model model) {
+	public String seoul_list(String page, String cate, Model model, HttpServletRequest request) {
 		if(cate==null) cate="1";
 		String[] category= {"", "location","nature","shop"};
 		String table="seoul_"+category[Integer.parseInt(cate)];
@@ -47,13 +53,40 @@ public class SeoulController {
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
 		
+		Cookie[] cookies=request.getCookies();
+		List<SeoulVO> cList=new ArrayList<SeoulVO>();
+		if(cookies!=null) {
+			for(int i=cookies.length-1;i>=0;i--) {
+				if(cookies[i].getName().startsWith("seoul")) {
+					String no=cookies[i].getValue();
+					Map map1=new HashMap();
+					map1.put("no", no);
+					map1.put("table", table);
+					SeoulVO vo=dao.seoulDetailData(map1);
+					cList.add(vo);
+				}
+			}
+		}
+		
 		model.addAttribute("cate", cate);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("list", list);
+		model.addAttribute("cList", cList);
 		return "seoul/list";
+	}
+	
+	@GetMapping("seoul/detail_before.do")
+	public String seoul_detail_before(String cate, String no, HttpServletResponse response, RedirectAttributes ra) {
+		Cookie cookie=new Cookie("seoul"+no, no);
+		cookie.setPath("/");
+		cookie.setMaxAge(60*60*24);
+		response.addCookie(cookie);
+		ra.addAttribute("cate", cate);
+		ra.addAttribute("no", no);
+		return "redirect:detail.do";
 	}
 	
 	@GetMapping("seoul/detail.do")

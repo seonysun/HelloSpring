@@ -39,9 +39,13 @@ h1{
 		  <tr>
 		  	<td>${vo.content }</td>
 		  </tr>
+		  <tr>
+		  	<td class="text-right">
+		  		<a href="../jeju/list.do" class="btn btn-sm btn-primary">목록</a>
+		  	</td>
+		  </tr>
 		</table>
 		<div style="height: 10px"></div>
-
 		<div class="row">
 			<img src="${vo.info }" style="width: 100%">
 		</div>
