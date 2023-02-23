@@ -35,7 +35,8 @@ public interface DataBoardMapper {
 			+ "WHERE no=#{no}")
 	public void databoardView(int no);
 	
-	@Select("SELECT * FROM spring_databoard "
+	@Select("SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,filename,filesize,filecount "
+			+ "FROM spring_databoard "
 			+ "WHERE no=#{no}")
 	public DataBoardVO databoardDetailData(int no);
 	

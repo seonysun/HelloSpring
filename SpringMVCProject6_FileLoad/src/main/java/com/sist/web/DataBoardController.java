@@ -1,5 +1,5 @@
 package com.sist.web;
-import java.io.File;
+import java.io.*;
 import java.net.URLEncoder;
 import java.util.*;
 
@@ -80,7 +80,6 @@ public class DataBoardController {
 	//상세
 	@GetMapping("databoard/detail.do")
 	public String databoard_detail(int no, Model model) {
-		dao.databoardView(no);
 		DataBoardVO vo=dao.databoardDetailData(no);
 		if(vo.getFilecount()>0) {
 			String[] fn=vo.getFilename().split(",");
@@ -100,8 +99,21 @@ public class DataBoardController {
 												//다운로드는 내장객체가 아니므로 response 필요
 		try {
 			File file=new File("c:\\download\\"+fn);
+			
+			//다운로드 팝업창 띄우기 
 			response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(fn, "UTF-8"));
-			response.setContentLength(0);
+			response.setContentLength((int)file.length());
+		    
+			//실제 다운로드 실행
+			BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file)); //서버에 존재하는 파일 위치 
+			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream()); //파일이 다운로드 되는 위치 
+			int i=0;
+			byte[] buffer=new byte[1024];
+			while((i=bis.read(buffer, 0, 1024))!=-1) {
+				bos.write(buffer, 0, i);
+			}
+	        bis.close();
+	        bos.close();
 		} catch(Exception ex) {}
 	}
 }

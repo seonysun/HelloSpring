@@ -24,10 +24,8 @@ public class DataBoardDAO {
 	}
 	
 	//상세
-	public void databoardView(int no) {
-		mapper.databoardView(no);
-	}
 	public DataBoardVO databoardDetailData(int no) {
+		mapper.databoardView(no);
 		return mapper.databoardDetailData(no);
 	}
 }
