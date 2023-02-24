@@ -109,6 +109,7 @@ public class SeoulController {
 		
 		List<FoodVO> list=dao.foodListData(addr);
 		
+		model.addAttribute("cate", cate);
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		return "seoul/detail";

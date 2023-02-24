@@ -35,7 +35,7 @@ h1{
 		  </tr>
 		  <tr>
 		  	<td class="text-right">
-		  		<a href="../seoul/list.do" class="btn btn-sm btn-primary">목록</a>
+		  		<a href="../seoul/list.do?cate=${cate}" class="btn btn-sm btn-primary">목록</a>
 		  	</td>
 		  </tr>
 		</table>
