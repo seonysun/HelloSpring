@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class DataBoardController {
@@ -47,7 +48,7 @@ public class DataBoardController {
 		return "databoard/insert";
 	}
 	
-	@PostMapping("databoard/insert_ok.do") //GET / POST 오류 시 405 에러
+	@PostMapping("databoard/insert_ok.do") //GET, POST 오류 시 405 에러
 	public String databoard_insert_ok(DataBoardVO vo) {
 		List<MultipartFile> list=vo.getFiles();
 		if(list==null) {
@@ -115,5 +116,20 @@ public class DataBoardController {
 	        bis.close();
 	        bos.close();
 		} catch(Exception ex) {}
+	}
+	
+	//수정
+	@GetMapping("databoard/update.do")
+	public String databoard_update(int no, Model model) {
+		DataBoardVO vo=dao.databoardUpdateData(no);
+		model.addAttribute("vo", vo);
+		return "databoard/update";
+	}
+
+	@PostMapping("databoard/update_ok.do")
+	public String databoard_update_ok(DataBoardVO vo, RedirectAttributes ra) {
+		dao.databoardUpdate(vo);
+		ra.addAttribute("no", vo.getNo());
+		return "redirect:detail.do";
 	}
 }
