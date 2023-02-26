@@ -34,4 +34,8 @@ public interface SeoulMapper {
 	
 	@Select("SELECT CEIL(COUNT(*)/20.0) FROM seoul_shop")
 	public int shopTotalPage();
+	
+	@Select("SELECT * FROM seoul_location "
+			+ "WHERE no=#{no}")
+	public SeoulVO seoulDetailData(int no);
 }

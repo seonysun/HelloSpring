@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class FoodController {
 	@Autowired
 	private FoodDAO dao;
+	@Autowired
+	private ReplyOrmDAO rdao;
 	
 	@GetMapping("food/food_list.do")
 	public String food_list(int cno, Model model) {
@@ -38,11 +40,16 @@ public class FoodController {
 	}
 	
 	@GetMapping("food/detail.do")
-	public String food_detail(int fno, Model model) {
+	public String food_detail(int fno, int type, Model model) {
 		FoodVO vo=dao.foodDetailData(fno);
 		String[] addrs=vo.getAddress().split(" ");
 		model.addAttribute("vo", vo);
  		model.addAttribute("addr", addrs[1].trim());
+ 		
+ 		//댓글
+ 		List<ReplyVO> rList=rdao.replyListData(fno, type);
+ 		model.addAttribute("rList", rList);
+ 		
 		model.addAttribute("main_jsp", "../food/detail.jsp");
 		return "main/main";
 	}
