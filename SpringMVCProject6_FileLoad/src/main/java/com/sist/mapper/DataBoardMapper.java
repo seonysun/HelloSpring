@@ -22,9 +22,15 @@ public interface DataBoardMapper {
 	public int databoardTotalPage();
 	
 	//데이터 추가
-		//시퀀스 대체 -> 시퀀스는 데이터를 지워도 초기화되지 않으므로 @SelectKey 주로 사용
 	@SelectKey(keyProperty = "no", resultType = int.class, before = true, 
 			statement = "SELECT NVL(MAX(no)+1, 1) as no FROM spring_databoard")
+		/* @SelectKey : SQL 수행 없이 자동 생성키 바로 사용
+		 * 				-> Sequence 대체(시퀀스는 데이터를 지워도 초기화되지 않으므로 @SelectKey 데이터 사용)
+		 * 		- keyProperty : @SelectKey 결과가 셋팅될 속성
+		 * 		- order
+		 * 			- before : @SelectKey 실행한 뒤 insert 실행
+		 * 			- after : insert 실행한 뒤 @SelectKey 실행
+		 */
 	
 	@Insert("INSERT INTO spring_databoard(no,name,subject,content,pwd,filename,filesize,filecount) "
 			+ "VALUES(#{no},#{name},#{subject},#{content},#{pwd},#{filename},#{filesize},#{filecount})")
@@ -60,4 +66,31 @@ public interface DataBoardMapper {
 		   +"SET name=#{name},subject=#{subject},content=#{content} "
 		   +"WHERE no=#{no}")
 	public void databoardUpdate(DataBoardVO vo);
+	
+	//데이터 검색
+//	<select id="databoardFindData" resultType="DataBoardVO" parameterType="hashmap">
+	public List<DataBoardVO> databoardFindData(Map map);
+	@Select({
+		"<script>"
+		+ "SELECT COUNT(*) FROM spring_databoard "
+		+"WHERE "
+		+"<trim prefixOverrides=\"OR\">"
+		+"<foreach collection=\"fsArr\" item=\"fd\">"
+        +"<trim prefix=\"OR\">"
+        +"<choose>"
+        +"<when test=\"fd=='N'.toString()\">"
+        +"name LIKE '%'||#{ss}||'%'"
+        +"</when>"
+        +"<when test=\"fd=='S'.toString()\">"
+        +"subject LIKE '%'||#{ss}||'%'"
+        +"</when>"
+        +"<when test=\"fd=='C'.toString()\">"
+        +"content LIKE '%'||#{ss}||'%'"
+        +"</when>"
+        +"</choose>"
+        +"</trim>"
+        +"</foreach>"
+        +"</trim>"
+        +"</script>"})
+	public int FindCount(Map map);
 }

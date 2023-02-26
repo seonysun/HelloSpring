@@ -59,7 +59,7 @@ h1{
 	          <td width=10% class="text-center">${vo.hit }</td>
 	          <td width=10% class="text-center">
 	            <c:if test="${vo.filecount>0 }">
-	              <img src="note.png" style="width: 20px;height: 20px" title="파일이 ${vo.filecount }개 있습니다">
+	              <img src="folder.png" style="width: 20px;height: 20px" title="파일이 ${vo.filecount }개 있습니다">
 	            </c:if>
 	          </th>
 	        </tr>

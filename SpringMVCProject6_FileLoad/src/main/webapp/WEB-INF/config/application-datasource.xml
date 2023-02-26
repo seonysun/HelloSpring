@@ -21,6 +21,7 @@
 	/>
 	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"
+		p:configLocation="/WEB-INF/config/Config.xml"
 	/>
 	<bean id="dataSource" 
           class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 

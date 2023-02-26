@@ -58,4 +58,12 @@ public class DataBoardDAO {
 	public void databoardUpdate(DataBoardVO vo) {
 		mapper.databoardUpdate(vo);
 	}
+	
+	//검색
+	public List<DataBoardVO> databoardFindData(Map map) {
+		return mapper.databoardFindData(map);
+	}
+	public int FindCount(Map map) {
+	    return mapper.FindCount(map);
+	}
 }
