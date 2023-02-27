@@ -88,11 +88,15 @@ $(function(){
 	<div class="container-fluid">
 		<div style="width: 100%">
 			<div class="text-right">
+			  <!-- 
 			  <form method="post" action="../member/login_ok.do">
+			   -->
 				ID: <input type="text" name="id" class="input-sm" size=10 id="id">&nbsp;
 				Password: <input type="password" name="pwd" class="input-sm" size=10 id="pwd">&nbsp;
 				<input type=submit class="btn btn-sm btn-danger" value="로그인" id="logBtn">
+			  <!-- 
 			  </form>
+			   -->
 			</div>
 		</div>
 	</div>

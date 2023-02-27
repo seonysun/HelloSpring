@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -26,7 +27,7 @@ public class MemberController {
 		return "main/main";
 	}
 	
-	@GetMapping("member/join_ok.do")
+	@PostMapping("member/join_ok.do")
 	public String member_join_ok(MemberVO vo, Model model) {
 		String en=encoder.encode(vo.getPwd()); //입력된 비밀번호 암호화
 		vo.setPwd(en); //암호화된 상태로 저장
@@ -34,7 +35,7 @@ public class MemberController {
 		return "redirect:../main/main.do";
 	}
 	
-	@GetMapping("member/login_ok.do")
+	@PostMapping("member/login_ok.do")
 	@ResponseBody
 		//화면 변경하지 않고 원하는 데이터 전송하는 어노테이션 @RestController -> 중간에 jsp 파일 없이 문자열 바로 보낼 수 있음
 	public String member_login_ok(MemberVO vo, HttpSession session) {
@@ -55,7 +56,7 @@ public class MemberController {
 		return result;
 	}
 	
-	@GetMapping("member/logout.do")
+	@PostMapping("member/logout.do")
 	public String member_logout(MemberVO vo, HttpSession session) {
 		session.invalidate(); //세션에 저장된 모든 내용 삭제
 		return "redirect:../main/main.do";
