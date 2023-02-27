@@ -132,4 +132,17 @@ public class DataBoardController {
 		ra.addAttribute("no", vo.getNo());
 		return "redirect:detail.do";
 	}
+	
+	//검색
+	@PostMapping("databoard/find.do")
+	public String databoard_find(String[] fs, String ss, Model model) {
+		Map map=new HashMap();
+		map.put("fsArr", fs);
+		map.put("ss", ss);
+		List<DataBoardVO> list=dao.databoardFindData(map);
+		int count=dao.FindCount(map);
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		return "databoard/find";
+	}
 }
