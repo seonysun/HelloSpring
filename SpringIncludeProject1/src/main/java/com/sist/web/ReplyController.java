@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class Replycontroller {
+public class ReplyController {
 	private String[] url= {"","../food/detail.do","../jeju/food_detail.do"};
 	@Autowired
-	private ReplyDAO dao;
+	private ReplyOrmDAO dao;
 	
 	@PostMapping("reply/insert.do")
 	public String reply_insert(ReplyVO vo, RedirectAttributes ra, HttpSession session) {
@@ -24,7 +24,15 @@ public class Replycontroller {
 		String name=(String)session.getAttribute("name");
 		vo.setId(id);
 		vo.setName(name);
-		dao.replyInsert(vo);
+		
+		Map map=new HashMap();
+		map.put("prno", vo.getRno());
+		map.put("ptype", vo.getType());
+		map.put("pid", vo.getId());
+		map.put("pname", vo.getName());
+		map.put("pmsg", vo.getMsg());
+		dao.replyInsert(map);
+		
 		ra.addAttribute("fno", vo.getRno());
 		ra.addAttribute("type", vo.getType());
 		return "redirect:"+url[vo.getType()];

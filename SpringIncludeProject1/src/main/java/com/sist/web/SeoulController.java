@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SeoulController {
 	@Autowired
 	private SeoulDAO dao;
+	@Autowired
+	private ReplyOrmDAO rdao;
 	
 	@GetMapping("seoul/location.do") 
 		//사용자 요청에 따라 메소드 찾음 => if : 어노테이션 (index: 찾기)
@@ -89,6 +91,20 @@ public class SeoulController {
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("sList", sList);
 		model.addAttribute("main_jsp", "../seoul/shop.jsp");
+		return "main/main";
+	}
+	
+	@GetMapping("seoul/detail.do")
+	public String seoul_detail(int fno, int type, Model model) {
+		SeoulVO vo=dao.seoulDetailData(fno);
+		String[] addrs=vo.getAddress().split(" ");
+		model.addAttribute("vo", vo);
+ 		model.addAttribute("addr", addrs[2].trim());
+ 		
+		List<ReplyVO> rList=rdao.replyListData(fno, type);
+		model.addAttribute("rList", rList);
+		
+		model.addAttribute("main_jsp", "../seoul/location_detail.jsp");
 		return "main/main";
 	}
 }

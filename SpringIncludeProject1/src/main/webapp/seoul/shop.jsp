@@ -11,7 +11,7 @@
 	<c:forEach var="vo" items="${sList }">
 		<div class="col-md-3">
 		    <div class="thumbnail">
-		      <a href="../seoul/shop_detail.do?no=${vo.no }">
+		      <a href="../seoul/shop_detail.do?fno=${vo.no }&type=3">
 		        <img src="${vo.poster }" style="width: 300px;height: 220px">
 		        <div class="caption">
 		          <p style="font-size: 8px">${vo.title }</p>

@@ -14,7 +14,6 @@ public class FoodController {
 	private FoodDAO dao;
 	@Autowired
 	private ReplyOrmDAO rdao;
-//	private ReplyDAO rdao;
 	
 	@GetMapping("food/food_list.do")
 	public String food_list(int cno, Model model) {

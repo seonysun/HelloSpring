@@ -53,7 +53,7 @@ public class ReplyDAO {
 		List<ReplyVO> list=new ArrayList<ReplyVO>();
 		try {
 			getConnection();
-			String sql="{Call replyList(?,?,?)";
+			String sql="{Call replyList(?,?,?)}";
 			cs=conn.prepareCall(sql);
 			cs.setInt(1, rno);
 			cs.setInt(2, type);

@@ -28,4 +28,7 @@ public class SeoulDAO {
 	public int shopTotalPage() {
 		return mapper.shopTotalPage();
 	}
+	public SeoulVO seoulDetailData(int no) {
+		return mapper.seoulDetailData(no);
+	}
 }

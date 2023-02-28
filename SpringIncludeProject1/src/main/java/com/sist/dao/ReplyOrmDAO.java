@@ -17,6 +17,7 @@ public class ReplyOrmDAO {
 		map.put("ptype", type);
 		mapper.replyListData(map);
 		return (List<ReplyVO>)map.get("presult");
+			//map안에 메소드 구현에 필요한 매개변수와 presult 들어있음 -> get 함수로 호출 후 형변환
 	}
 	//replyInsert(ReplyVO vo)
 	public void replyInsert(Map map) {

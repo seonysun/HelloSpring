@@ -14,6 +14,7 @@ public interface ReplyMapper {
 			+ "#{presult,mode=OUT,jdbcType=CURSOR,resultMap=replyMap})}")
 						//값을 가져오는 경우 OUT
 	@Options(statementType = StatementType.CALLABLE)
+										//prepared : sql 문장 전송할 수 있는 상태, callable : 프로시저 호출할 수 있는 상태
 	public List<ReplyVO> replyListData(Map map);
 	
 	@Select(value = "{CALL replyInsert(#{prno,mode=IN,javaType=java.lang.Integer},"
