@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class JejuController {
 	@Autowired
 	private JejuDAO dao;
+	@Autowired
+	private ReplyOrmDAO rdao;
 	
 	@GetMapping("jeju/location.do")
 	public String jeju_location(String page, Model model) {
@@ -62,6 +64,16 @@ public class JejuController {
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("jList", jList);
 		model.addAttribute("main_jsp", "../jeju/food.jsp");
+		return "main/main";
+	}
+	
+	@GetMapping("jeju/food_detail.do")
+	public String jeju_food_detail(int fno, int type, Model model) {
+		JejuFoodVO vo=dao.jejuFoodDetailData(fno);
+		model.addAttribute("vo", vo);
+ 		List<ReplyVO> rList=rdao.replyListData(fno, type);
+ 		model.addAttribute("rList", rList);
+		model.addAttribute("main_jsp", "../jeju/food_detail.jsp");
 		return "main/main";
 	}
 }

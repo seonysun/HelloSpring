@@ -79,9 +79,7 @@ $(function(){
 		<div class="row">
 			<table class="table">
 			  <tr>
-			  	<c:forTokens items="${vo.poster }" delims="^" var="img">
-			  		<td><img src="${img }" style="width: 100%"></td>
-			  	</c:forTokens>
+			  	<td><img src="${vo.poster }" style="height: 100%"></td>
 			  </tr>
 			</table>
 		</div>
@@ -91,12 +89,16 @@ $(function(){
 				<table class="table">
 				  <tr>
 				  	<td colspan="2">
-				  		<h3>${vo.name }&nbsp;<span style="color: orange">${vo.score }</span></h3>
+				  		<h3>${vo.title }&nbsp;<span style="color: orange">${vo.score }</span></h3>
 				  	</td>
 				  </tr>
 				  <tr>
 				  	<th width=20%>주소</th>
-				  	<td width=80%>${vo.address }</td>
+				  	<td width=80%>
+				  		${vo.addr }
+				  		<br>
+				  		<sub>지번: ${vo.addr2 }</sub>
+				  	</td>
 				  </tr>
 				  <tr>
 				  	<th width=20%>전화</th>
@@ -107,10 +109,6 @@ $(function(){
 				  	<td width=80%>${vo.type }</td>
 				  </tr>
 				  <tr>
-				  	<th width=20%>가격대</th>
-				  	<td width=80%>${vo.price }</td>
-				  </tr>
-				  <tr>
 				  	<th width=20%>주차</th>
 				  	<td width=80%>${vo.parking }</td>
 				  </tr>
@@ -118,25 +116,18 @@ $(function(){
 				  	<th width=20%>영업시간</th>
 				  	<td width=80%>${vo.time }</td>
 				  </tr>
-				  <c:if test="${vo.menu!='no' }">
+				  <c:if test="${vo.menu!='no' || vo.menu!=null }">
 					  <tr>
 					  	<th width=20%>메뉴</th>
 					  	<td width=80%>
 					  		<ul>
-							  	<c:forTokens items="${vo.menu }" delims="원" var="m">
-							  		<li>${m }원</li>
+							  	<c:forTokens items="${vo.menu }" delims="^" var="m">
+							  		<li>${m }</li>
 							  	</c:forTokens>
 					  		</ul>
 					  	</td>
 					  </tr>
 				  </c:if>
-				  <tr>
-				  	<td colspan=2 class="text-right">
-				  		<b>맛있다(${vo.good })&nbsp;괜찮다(${vo.soso })&nbsp;별로(${vo.bad })</b>&nbsp;
-				  		<input type=button class="btn btn-xs btn-danger" value="목록" onclick="javascript:history.back()">
-				  																<!-- hit 수 등 업데이트 필요한 데이터 포함 시에는 링크로 줘야 함 -->
-				  	</td>
-				  </tr>
 				</table>
 				<div style="height: 20px"></div>
 				<table class=table>
@@ -149,7 +140,7 @@ $(function(){
 				  			  	<td class="text-right">
 				  			  		<c:if test="${sessionScope.id==rvo.id }">
 				  			  			<span class="btn btn-xs btn-warning ups" data-no="${rvo.no }">수정</span>
-				  			  			<a href="../reply/delete.do?no=${rvo.no }&rno=${vo.fno}&type=1" class="btn btn-xs btn-info">삭제</a>
+				  			  			<a href="../reply/delete.do?no=${rvo.no }&rno=${vo.no}&type=2" class="btn btn-xs btn-info">삭제</a>
 				  			  		</c:if>
 				  			  	</td>
 				  			  </tr>
@@ -162,8 +153,8 @@ $(function(){
 							  	<td colspan=2>
 							  		<form method="post" action="../reply/update.do">
 							  			<input type=hidden name=no value="${rvo.no }">
-							  			<input type=hidden name=type value=1>
-							  			<input type=hidden name=rno value="${vo.fno }">
+							  			<input type=hidden name=type value=2>
+							  			<input type=hidden name=rno value="${vo.no }">
 							  			<textarea rows="5" cols="80" name="msg" style="float: left">${rvo.msg }</textarea>
 							  			<input type=submit value="수정하기" style="float: left;height: 105px" class="btn btn-sm btn-warning">
 							  		</form>
@@ -179,8 +170,8 @@ $(function(){
 					  <tr>
 					  	<td>
 					  		<form method="post" action="../reply/insert.do">
-					  			<input type=hidden name=type value=1>
-					  			<input type=hidden name=rno value="${vo.fno }">
+					  			<input type=hidden name=type value=2>
+					  			<input type=hidden name=rno value="${vo.no }">
 					  			<textarea rows="5" cols="80" name="msg" style="float: left"></textarea>
 					  			<input type=submit value="댓글쓰기" style="float: left;height: 105px" class="btn btn-sm btn-primary">
 					  		</form>
@@ -216,7 +207,7 @@ $(function(){
 				// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 				var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 				// 키워드로 장소를 검색합니다
-				searchPlaces('${addr }');
+				searchPlaces('${vo.addr }');
 				// 키워드 검색을 요청하는 함수입니다
 				function searchPlaces(keyword) {
 				    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다

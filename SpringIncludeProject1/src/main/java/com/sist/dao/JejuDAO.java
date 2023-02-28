@@ -22,4 +22,7 @@ public class JejuDAO {
 	public int jejuFoodTotalPage() {
 		return mapper.jejuTotalPage();
 	}
+	public JejuFoodVO jejuFoodDetailData(int no) {
+		return mapper.jejuFoodDetailData(no);
+	}
 }

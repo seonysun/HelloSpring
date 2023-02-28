@@ -24,4 +24,8 @@ public interface JejuMapper {
 	
 	@Select("SELECT CEIL(COUNT(*)/20.0) FROM jejuFood")
 	public int jejuFoodTotalPage();
+	
+	@Select("SELECT * FROM jejuFood "
+			+ "WHERE no=#{no}")
+	public JejuFoodVO jejuFoodDetailData(int no);
 }
