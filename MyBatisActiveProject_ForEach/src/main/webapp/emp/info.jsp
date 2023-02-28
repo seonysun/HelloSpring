@@ -38,7 +38,7 @@ h1{
 				  	<td class="text-center">${vo.empno }</td>
 				  	<td class="text-center">${vo.ename }</td>
 				  	<td class="text-center">${vo.job }</td>
-				  	<td class="text-center">${vo.hiredate }</td>
+				  	<td class="text-center"><fmt:formatDate value="${vo.hiredate }" pattern="yyyy-MM-dd"/></td>
 				  	<td class="text-center">${vo.sal }</td>
 				  </tr>
 			  </c:forEach>

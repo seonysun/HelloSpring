@@ -15,7 +15,7 @@
 		</trim>
 			<!-- ename 뒤에 IN(...foreach...) 첨부 -->
 		<!-- 
-		trim prefix="IN(" suffix=")" suffixOverrides=")"
+		trim prefix="IN(" suffix=")" suffixOverrides=")" preffixOverrides="("
 			foreach collection="names" item="name" close=")" separator="," /foreach
 		/trim
 		 -->

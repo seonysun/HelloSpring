@@ -19,22 +19,26 @@ h1{
    text-align: center;
 }
 </style>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<h1>레시피 선택</h1>
-		<form method=post action="../recipe/find.do">
-		<div class="row">
-			<c:forEach var="m" items="${menu }">
-				<input type="checkbox" name="menu" value="${m }">${m }&nbsp;
-			</c:forEach>
-		</div>
-		<div class="row">
-			<div class="text-center">
-				<input type=submit value="검색" class="btn btn-sm btn-danger">
-			</div>
-		</div>
-		</form>
-	</div>
+  <div class="container">
+    <div class="row">
+     <c:forEach var="vo" items="${list }">
+       <div class="col-md-3">
+		    <div class="thumbnail">
+		      <a href="#">
+		        <img src="${vo.poster }" title="${vo.chef }" style="width:100%">
+		        <div class="caption">
+		          <p>${vo.title }</p>
+		        </div>
+		      </a>
+		    </div>
+		  </div>
+     </c:forEach>
+    </div>
+  </div>
 </body>
 </html>

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RecipeController {
+	@Autowired
+	private RecipeDAO dao;
+	
 	@GetMapping("recipe/recipe.do")
 	public String recipe_list(Model model) {
 		String[] menu= {
@@ -28,6 +31,9 @@ public class RecipeController {
 			s+=m+"|";
 		}
 		s.substring(0, s.lastIndexOf("|"));
+			//select * from ~ where regexp_like(~,'a|b|c')
+		List<RecipeVO> list=dao.recipeFindData(s);
+		model.addAttribute("list", list);
 		return "recipe/find";
 	}
 }
