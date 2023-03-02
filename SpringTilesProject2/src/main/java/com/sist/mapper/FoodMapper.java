@@ -37,4 +37,8 @@ public interface FoodMapper {
 			+ "FROM food_location "
 			+ "WHERE address LIKE '%'||#{addr}||'%'")
 	public int foodSearchTotalPage(Map map);
+	
+	@Select("SELECT * FROm food_location "
+			+ "WHERE fno=#{fno}")
+	public FoodVO foodLocationDetailData(int fno);
 }

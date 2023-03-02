@@ -75,7 +75,25 @@ public class FoodController {
 	}
 	
 	@GetMapping("food/food_search.do")
+		//RestController에서는 화면 변경이 불가하므로 Controller에서 화면 변경 실행 후 RestController에서는 데이터만 수신
 	public String food_search() {
 		return "food/food_search";
+	}
+	
+	@GetMapping("food/location_detail_before.do")
+	public String food_location_detail_before(int fno, HttpServletResponse response, RedirectAttributes ra) {
+		Cookie cookie=new Cookie("location"+fno, String.valueOf(fno));
+		cookie.setPath("/");
+		cookie.setMaxAge(60*60*24);
+		response.addCookie(cookie);
+		
+		ra.addAttribute("fno", fno);
+		return "redirect:../food/location_detail.do";
+	}
+	
+	@GetMapping("food/location_detail.do")
+	public String food_location_detail(int fno, Model model) {
+		model.addAttribute("fno", fno);
+		return "food/location_detail";
 	}
 }
