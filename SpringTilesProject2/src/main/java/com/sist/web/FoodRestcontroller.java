@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 /*
  * JSON : 문자 기반의 데이터 포맷
- * JSONP
- * 클로져
+ * JSONP(JSON with Padding) : 스크립트 호출 방식
+ * 								-> 스크립트 내에 JSON 포함시켜 가져오는 방식
+ * 클로져 : 내부함수가 자신이 선언되었을 때의 환경(스코프) 기억
+ * 			-> 스코프 밖에서 호출되어도 해당 스코프에 접근 가능
  * */
 @RestController
 public class FoodRestcontroller {
