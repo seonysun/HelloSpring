@@ -31,4 +31,7 @@ public class FoodDAO {
 	public FoodVO foodLocationDetailData(int fno) {
 		return mapper.foodLocationDetailData(fno);
 	}
+	public List<CategoryVO> categoryVueData(Map map){
+		return mapper.categoryVueData(map);
+	}
 }

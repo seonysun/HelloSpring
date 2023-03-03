@@ -2,6 +2,7 @@ package com.sist.mapper;
 import java.util.*;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 
 import com.sist.vo.*;
 
@@ -38,7 +39,25 @@ public interface FoodMapper {
 			+ "WHERE address LIKE '%'||#{addr}||'%'")
 	public int foodSearchTotalPage(Map map);
 	
-	@Select("SELECT * FROm food_location "
+	@Select("SELECT * FROM food_location "
 			+ "WHERE fno=#{fno}")
 	public FoodVO foodLocationDetailData(int fno);
+	
+	@Select({
+		"<script>"
+		+ "SELECT cno,title,poster "
+		+ "FROM project_food_category "
+		+ "WHERE "
+		+ "<if test='no==1'>"
+		+ "cno BETWEEN 181 AND 192"
+		+ "</if>"
+		+ "<if test='no==2'>"
+		+ "cno BETWEEN 193 AND 198"
+		+ "</if>"
+		+ "<if test='no==3'>"
+		+ "cno BETWEEN 199 AND 210"
+		+ "</if>"
+		+ "</script>"
+	})
+	public List<CategoryVO> categoryVueData(Map map);
 }
