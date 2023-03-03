@@ -13,8 +13,8 @@ public interface JejuMapper {
 	public List<JejuLocationVO> jejuLocationListData(Map map);
 	
 	@Select("SELECT CEIL(COUNT(*)/20.0) FROM jejuLocation")
-	
 	public int jejuTotalPage();
+	
 	@Select("SELECT no,title,poster,num "
 			+ "FROM (SELECT no,title,poster,rownum as num "
 			+ "FROM (SELECT no,title,poster "
