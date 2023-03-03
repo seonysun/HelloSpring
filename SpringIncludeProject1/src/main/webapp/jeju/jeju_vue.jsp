@@ -127,20 +127,13 @@ h1{
 				},
 				prev:function(){
 					this.curpage=this.curpage>1?this.curpage-1:this.curpage
-					let _this=this
-					axios.get('http://localhost/web/jeju/food_list_vue.do',{
-						params:{
-							page:_this.curpage
-						}
-					}).then(function(response){
-						console.log(response.data)
-						_this.food_list=response.data
-						_this.curpage=response.data[0].curpage
-						_this.totalpage=response.data[0].totalpage
-					})
+					this.send()
 				},
 				next:function(){
 					this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage
+					this.send()
+				},
+				send:function(){
 					let _this=this
 					axios.get('http://localhost/web/jeju/food_list_vue.do',{
 						params:{
@@ -151,7 +144,7 @@ h1{
 						_this.food_list=response.data
 						_this.curpage=response.data[0].curpage
 						_this.totalpage=response.data[0].totalpage
-					})
+					})	
 				}
 			}
 		})
