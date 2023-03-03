@@ -72,7 +72,7 @@
 			el:'#app',
 			data:{
 				fno:${fno},
-				vo:{} //vo
+				vo:{} //vo = Object(JSONObject)
 			},
 			mounted:function(){
 				let _this=this

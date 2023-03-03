@@ -54,7 +54,7 @@
        data:{ //양방향 통신 -> 입력된 데이터 받아오는 것, 입력한 데이터 보내는 것 모두 가능
           curpage:1,
           totalpage:0,
-          food_list:[], //list
+          food_list:[], //list = Array(JSONArray)
           addr:''
        },
        mounted:function(){
