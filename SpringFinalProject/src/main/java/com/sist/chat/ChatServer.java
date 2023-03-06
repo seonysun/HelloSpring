@@ -39,9 +39,9 @@ public class ChatServer {
 //		HttpServletRequest request=((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 //		HttpSession se=request.getSession();
 //		String name=(String)se.getAttribute("name");
-		Iterator<Session> iterator=users.iterator();
 		System.out.println(users.size()+"명 접속 중");
 		System.out.println("수신 메시지: "+message);
+		Iterator<Session> iterator=users.iterator();
 		while(iterator.hasNext()) {
 			iterator.next().getBasicRemote().sendText(message);
 		}
