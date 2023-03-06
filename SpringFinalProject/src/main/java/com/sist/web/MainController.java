@@ -9,4 +9,9 @@ public class MainController {
 	public String main_main() {
 		return "main";
 	}
+	
+	@GetMapping("chat/chat.do")
+	public String chat_chat() {
+		return "site/chat/chat";
+	}
 }
