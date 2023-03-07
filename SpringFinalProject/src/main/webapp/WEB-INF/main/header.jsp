@@ -14,7 +14,7 @@
 <div class="wrapper row1">
   <header id="header" class="clear"> 
     <div id="logo" class="fl_left">
-      <h1><a href="../main/main.do">Gravity</a></h1>
+      <h1><a href="../main/main.do">Food & Recipe</a></h1>
     </div>
     <div class="fl_right">
      <c:if test="${sessionScope.id==null }">
@@ -59,7 +59,7 @@
       </li>
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
-          <li><a href="../pages/gallery.html">게시판</a></li>
+          <li><a href="../board/list.do">게시판</a></li>
           <li><a href="../pages/full-width.html">공지사항</a></li>
         </ul>
       </li>
@@ -99,13 +99,13 @@
 					let res=response.data.trim()
 					if(res==='NOID'){
 						alert("존재하지 않는 ID입니다!")
-						id='';
-						pwd='';
-						this.$refs.id.focus()
+						_this.id='';
+						_this.pwd='';
+						_this.$refs.id.focus()
 					}else if(res==='NOPWD'){
 						alert("비밀번호를 다시 확인해주세요!")
-						pwd='';
-						this.$refs.pwd.focus()
+						_this.pwd='';
+						_this.$refs.pwd.focus()
 					}else{
 						location.href="../main/main.do"
 					}

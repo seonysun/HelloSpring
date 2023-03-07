@@ -1,5 +1,9 @@
 package com.sist.web;
 import java.util.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import com.sist.vo.*;
 import com.sist.dao.*;
 
@@ -61,14 +65,48 @@ public class FoodRestController {
 		return arr.toJSONString();
 	}
 
+	@GetMapping(value = "food/cookie_vue.do", produces = "text/plain;charset=UTF-8")
+	public String food_cookie_vue(HttpServletRequest request) {
+		Cookie[] cookies=request.getCookies();
+		List<FoodVO> list=new ArrayList<FoodVO>();
+		if(cookies!=null) {
+			for(int i=cookies.length-1;i>=0;i--) {
+				if(cookies[i].getName().startsWith("food")) {
+					String fno=cookies[i].getValue();
+					FoodVO vo=dao.foodCookieData(Integer.parseInt(fno));
+					list.add(vo);
+				}
+			}
+		}
+		JSONArray arr=new JSONArray();
+		int i=0;
+		for(FoodVO vo:list) {
+			if(i>=9) break;
+			JSONObject obj=new JSONObject();
+			obj.put("fno", vo.getFno());
+			obj.put("name", vo.getName());
+			String poster=vo.getPoster();
+			poster=poster.substring(0, poster.indexOf("^"));
+			poster=poster.replace("#", "&");
+			obj.put("poster", poster);
+			arr.add(obj);
+			i++;
+		}
+		return arr.toJSONString();
+	}
+	
 	@GetMapping(value = "food/food_detail_vue.do", produces = "text/plain;charset=UTF-8")
-	public String food_detail(int fno) {
+	public String food_detail_vue(int fno) {
 		FoodVO vo=dao.foodDetailData(fno);
 		JSONObject obj=new JSONObject();
 		obj.put("fno", vo.getFno());
 		obj.put("name", vo.getName());
 		obj.put("score", vo.getScore());
-		obj.put("address", vo.getAddress());
+		String address=vo.getAddress();
+		String addr1=address.substring(0, address.lastIndexOf("지"));
+		String addr2=address.substring(address.lastIndexOf("지")+3);
+		obj.put("addr1", addr1.trim());
+		obj.put("addr2", addr2.trim());
 		obj.put("tel", vo.getTel());
 		obj.put("type", vo.getType());
 		obj.put("poster", vo.getPoster());

@@ -51,7 +51,7 @@
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
         <li v-for="(vo, index) in cate_list" v-if="index>=0 && 12>index">
-          <figure><a :href="'../food/food_list.do?cno='+vo.cno"><img class="radius-10 btmspace-10" :src="vo.poster" style="width: 85%"></a>
+          <figure><a :href="'../food/food_list.do?cno='+vo.cno"><img class="radius-10 btmspace-10" :src="vo.poster" style="width: 87%"></a>
             <figcaption><a :href="'../food/food_list.do?cno='+vo.cno">{{vo.title}}</a></figcaption>
           </figure>
         </li>
@@ -61,7 +61,7 @@
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
         <li v-for="(vo, index) in cate_list" v-if="index>=12 && 18>index">
-          <figure><a :href="'../food/food_list.do?cno='+vo.cno"><img class="radius-10 btmspace-10" :src="vo.poster" alt=""></a>
+          <figure><a :href="'../food/food_list.do?cno='+vo.cno"><img class="radius-10 btmspace-10" :src="vo.poster" style="width: 87%"></a>
             <figcaption><a :href="'../food/food_list.do?cno='+vo.cno">{{vo.title}}</a></figcaption>
           </figure>
         </li>
@@ -71,7 +71,7 @@
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
         <li v-for="(vo, index) in cate_list" v-if="index>=18 && 30>index">
-          <figure><a :href="'../food/food_list.do?cno='+vo.cno"><img class="radius-10 btmspace-10" :src="vo.poster" style="width: 85%"></a>
+          <figure><a :href="'../food/food_list.do?cno='+vo.cno"><img class="radius-10 btmspace-10" :src="vo.poster" style="width: 87%"></a>
             <figcaption><a :href="'../food/food_list.do?cno='+vo.cno">{{vo.title}}</a></figcaption>
           </figure>
         </li>
@@ -79,7 +79,7 @@
     </div>
     
     <h2 class="sectiontitle">추천 맛집 & 레시피</h2>
-    <ul class="nospace group">
+    <ul class="nospace group btmspace-80">
       <li class="one_half first">
         <article><img class="imgl radius-10" src="../images/demo/100x100.gif" alt="">
           <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
@@ -96,7 +96,18 @@
     <!-- / main body -->
     
     <h2 class="sectiontitle">최근 방문 맛집</h2>
+    <div class="flexslider carousel basiccarousel btmspace-80">
+      <ul class="slides">
+        <li v-for="fvo in cookie_list">
+          <figure><a :href="'../food/food_detail.do?fno='+fvo.fno"><img class="radius-10 btmspace-10" :src="fvo.poster" style="width: 70%"></a>
+            <figcaption><a :href="'../food/food_detail.do?fno='+fvo.fno">{{fvo.name}}</a></figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div>
+    
     <h2 class="sectiontitle">최근 검색 레시피</h2>
+    
     <div class="clear"></div>
   </main>
 </div>
@@ -104,13 +115,18 @@
 	new Vue({
 		el:'.rows',
 		data:{
-			cate_list:[]
+			cate_list:[],
+			cookie_list:[]
 		},
 		mounted:function(){
 			let _this=this
 			axios.get("http://localhost/web/food/food_main_vue.do").then(function(response){
 				console.log(response.data)
 				_this.cate_list=response.data
+			})
+			axios.get("http://localhost/web/food/cookie_vue.do").then(function(response){
+				console.log(response.data)
+				_this.cookie_list=response.data
 			})
 		}
 	})

@@ -43,7 +43,6 @@
 		  	</td>
 		  </tr>
 		</table>
-  
   </main>
 </div>
 <script>

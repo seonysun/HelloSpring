@@ -22,6 +22,10 @@ public class FoodDAO {
 		return mapper.foodListData(cno);
 	}
 	public FoodVO foodDetailData(int fno) {
+		mapper.foodHitIncrement(fno);
+		return mapper.foodDetailData(fno);
+	}
+	public FoodVO foodCookieData(int fno) {
 		return mapper.foodDetailData(fno);
 	}
 }
