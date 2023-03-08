@@ -185,4 +185,26 @@ public class FoodRestController {
 	 * obj.put("startpage", startpage); obj.put("endpage", endpage); } arr.add(obj);
 	 * i++; } return arr.toJSONString(); }
 	 */
+	
+	@GetMapping(value = "food/food_location_detail_vue.do", produces = "text/plain;charset=UTF-8")
+	public String food_location_detail_vue(int fno) {
+		FoodVO vo=dao.foodLocationDetailData(fno);
+		JSONObject obj=new JSONObject();
+		obj.put("fno", vo.getFno());
+		obj.put("name", vo.getName());
+		obj.put("score", vo.getScore());
+		String address=vo.getAddress();
+		String addr1=address.substring(0, address.lastIndexOf("지"));
+		String addr2=address.substring(address.lastIndexOf("지")+3);
+		obj.put("addr1", addr1.trim());
+		obj.put("addr2", addr2.trim());
+		obj.put("tel", vo.getTel());
+		obj.put("type", vo.getType());
+		obj.put("poster", vo.getPoster());
+		obj.put("price", vo.getPrice());
+		obj.put("parking", vo.getParking());
+		obj.put("time", vo.getTime());
+		obj.put("menu", vo.getMenu());
+		return obj.toJSONString();
+	}
 }

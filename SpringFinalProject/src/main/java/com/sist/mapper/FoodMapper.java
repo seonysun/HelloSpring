@@ -40,12 +40,24 @@ public interface FoodMapper {
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<FoodVO> foodLocationFindData(Map map);
 	
-	@Select("SELECT * FROM food_location "
-			+ "WHERE fno=#{fno}")
-	public FoodVO foodLocationDetailData(int fno);
-	
 	@Select("SELECT CEIL(COUNT(*)/20.0) "
 			+ "FROM food_location "
 			+ "WHERE address LIKE '%'||#{address}||'%'")
 	public int foodLocationTotalPage(String address);
+	
+	@Update("UPDATE food_location "
+			+ "SET hit=hit+1 "
+			+ "WHERE fno=#{fno}")
+	public void foodLocationHitIncrement(int fno);
+	
+	@Select("SELECT * FROM food_location "
+			+ "WHERE fno=#{fno}")
+	public FoodVO foodLocationDetailData(int fno);
+	
+	@Select("SELECT fno,name,address,score,rownum "
+			+ "FROM (SELECT fno,name,address,score "
+			+ "FROM project_food "
+			+ "ORDER BY hit DESC) "
+			+ "WHERE rownum<=7")
+	public List<FoodVO> foodTop7();
 }

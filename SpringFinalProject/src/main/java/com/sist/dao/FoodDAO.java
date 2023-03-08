@@ -33,9 +33,13 @@ public class FoodDAO {
 		return mapper.foodLocationFindData(map);
 	}
 	public FoodVO foodLocationDetailData(int fno) {
+		mapper.foodLocationHitIncrement(fno);
 		return mapper.foodLocationDetailData(fno);
 	}
 	public int foodLocationTotalPage(String address) {
 		return mapper.foodLocationTotalPage(address);
+	}
+	public List<FoodVO> foodTop7(){
+		return mapper.foodTop7();
 	}
 }
