@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,20 @@
   	<div class=row>
   		<div id=a>
   			<img src="../images/map/1111.png" id=seoul_1>
-  			<img :src="'../images/map/gu_'+i+'_off.png'" v-for="i in range(1, 25)" :id="'gu'+i">
+  		  <c:forEach var="i" begin="1" end="25">
+	        <img src="../images/map/gu_${i }_off.png" id="gu${i }"
+	          onmouseover="this.src='../images/map/gu_${i}_on.png'"
+	          onmouseout="this.src='../images/map/gu_${i}_off.png'"
+	          v-on:click="imageClick(${i })"
+	        >
+	      </c:forEach>
+  			<!-- 
+  			<img :src="'../images/map/gu_'+i+'_off.png'" 
+  				v-for="i in range(1, 25)" :id="'gu'+i"
+  				v-on:mouseover="this.src='../images/map/gu_'+i+'_on.png'"
+  				v-on:mouseout="this.src='../images/map/gu_'+i+'_off.png'"
+  			>
+  			 -->
   		</div>
   	</div>
   	<div class=row>
@@ -67,7 +81,11 @@
 			totalpage:0,
 			startpage:0,
 			endpage:0,
-			ss:'역삼'
+			ss:'역삼',
+			guList:["전체", "강서구", "양천구", "구로구", "마포구", "영등포구", "금천구",
+				"은평구", "서대문구", "동작구", "관악구", "종로구", "중구", "용산구", "서초구", "강북구",
+				"성북구", "도봉구", "동대문구", "성동구", "강남구", "노원구", "중랑구", "광진구", "송파구",
+				"강동구"]
 		},
 		mounted:function(){
 			this.getData()
@@ -113,7 +131,28 @@
 			next:function(){
 				this.curpage=this.endpage+1
 				this.getData()
+			},
+			imageClick:function(no){
+				this.ss=this.guList[no]
+				this.curpage=1
+				this.getData()
 			}
+			/* getImageClickData:function(){
+				let _this=this
+				axios.get('http://localhost/web/food/food_find_gu_vue.do',{
+					params:{
+						page:this.curpage,
+						gu:no
+					}
+				}).then(function(response){
+					console.log(response.data)
+					_this.find_list=response.data
+					_this.curpage=response.data[0].curpage
+					_this.totalpage=response.data[0].totalpage
+					_this.startpage=response.data[0].startpage
+					_this.endpage=response.data[0].endpage
+				})
+			}  */
 		}
 	})
 </script>
