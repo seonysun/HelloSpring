@@ -37,13 +37,15 @@
 	    
 	    <!-- ojdbc(Maven에서 사용이 안된다)-->
 	    <!-- 시스템 경로 줄때 사용  -->
-	    <!-- <dependency>
+	    <!-- 
+	    <dependency>
 		    <groupId>com.oracle</groupId>
 		    <artifactId>ojdbc8</artifactId>
 		    <version>8.0</version>
 		    <scope>system</scope>
 		    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>
-		</dependency> -->
+		</dependency> 
+		-->
 		<dependency>
 		    <groupId>com.oracle.database.jdbc</groupId>
 		    <artifactId>ojdbc8</artifactId>
@@ -197,7 +199,6 @@
          <artifactId>spring-webmvc-portlet</artifactId>
          <version>5.1.5.RELEASE</version>
       </dependency> -->
-      
       <dependency>
          <groupId>taglibs</groupId>
          <artifactId>standard</artifactId>
@@ -214,9 +215,6 @@
          <artifactId>REngine</artifactId>
          <version>1.7-3</version>
       </dependency>
-      <!-- 
-         @Select("<script>SELECT~~ <if test="">")
-       -->
       <dependency>
          <groupId>org.mybatis</groupId>
          <artifactId>mybatis</artifactId>
@@ -341,7 +339,7 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
-		 <!-- AOP -->
+	  <!-- AOP -->
       <dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -358,7 +356,7 @@
 		<groupId>asm</groupId>
 		<artifactId>asm</artifactId>
 		<version>3.1</version>
-	</dependency>
+	  </dependency>
 		<!-- tiles  -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
