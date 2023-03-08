@@ -31,4 +31,14 @@ public class FoodController {
 		model.addAttribute("fno", fno);
 		return "food/detail";
 	}
+	
+	@GetMapping("food/food_find.do")
+	public String food_find() {
+		return "food/find";
+	}
+	
+	@GetMapping("food/food_recommand.do")
+	public String food_recommand() {
+		return "food/recommand";
+	}
 }

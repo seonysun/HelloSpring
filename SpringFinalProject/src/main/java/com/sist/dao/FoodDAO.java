@@ -1,6 +1,7 @@
 package com.sist.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,5 +28,14 @@ public class FoodDAO {
 	}
 	public FoodVO foodCookieData(int fno) {
 		return mapper.foodDetailData(fno);
+	}
+	public List<FoodVO> foodLocationFindData(Map map){
+		return mapper.foodLocationFindData(map);
+	}
+	public FoodVO foodLocationDetailData(int fno) {
+		return mapper.foodLocationDetailData(fno);
+	}
+	public int foodLocationTotalPage(String address) {
+		return mapper.foodLocationTotalPage(address);
 	}
 }

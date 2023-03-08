@@ -46,8 +46,8 @@
       </li>
       <li><a class="drop" href="#">맛집</a>
         <ul>
-          <li><a href="../pages/gallery.html">지역별 검색</a></li>
-          <li><a href="../pages/full-width.html">밋집 추천</a></li>
+          <li><a href="../food/food_find.do">지역별 검색</a></li>
+          <li><a href="../food/food_recommand.do">밋집 추천</a></li>
         </ul>
       </li>
       <li><a class="drop" href="#">레시피</a>
