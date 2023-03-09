@@ -39,9 +39,9 @@
       <li class="active"><a href="../main/main.do">Home</a></li>
       <li><a class="drop" href="#">회원</a>
         <ul>
-          <li><a href="../pages/gallery.html">회원가입</a></li>
-          <li><a href="../pages/full-width.html">아이디찾기</a></li>
-          <li><a href="../pages/sidebar-left.html">비밀번호찾기</a></li>
+          <li><a href="#">회원가입</a></li>
+          <li><a href="#">아이디찾기</a></li>
+          <li><a href="#">비밀번호찾기</a></li>
         </ul>
       </li>
       <li><a class="drop" href="#">맛집</a>
@@ -52,15 +52,15 @@
       </li>
       <li><a class="drop" href="#">레시피</a>
         <ul>
-          <li><a href="../pages/gallery.html">레시피</a></li>
-          <li><a href="../pages/full-width.html">쉐프</a></li>
-          <li><a href="../pages/sidebar-left.html">가격비교</a></li>
+          <li><a href="../recipe/recipe_list.do">레시피</a></li>
+          <li><a href="../recipe/chef_list.do">쉐프</a></li>
+          <li><a href="#">가격비교</a></li>
         </ul>
       </li>
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
           <li><a href="../board/list.do">게시판</a></li>
-          <li><a href="../pages/full-width.html">공지사항</a></li>
+          <li><a href="#">공지사항</a></li>
         </ul>
       </li>
       <c:if test="${sessionScope.id!=null }">

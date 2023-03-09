@@ -118,20 +118,17 @@ public class FoodRestController {
 	}
 	
 	@GetMapping(value = "food/food_find_vue.do", produces = "text/plain;charset=UTF-8")
-	public String food_find_vue(String page, String address) {
-		if(page==null) page="1";
-		if(address==null) address="역삼";
-		int curpage=Integer.parseInt(page);
+	public String food_find_vue(int page, String address) {
 		int totalpage=dao.foodLocationTotalPage(address);
 		Map map=new HashMap();
-		map.put("start", (curpage*20)-19);
-		map.put("end", curpage*20);
+		map.put("start", (page*20)-19);
+		map.put("end", page*20);
 		map.put("address", address);
 		List<FoodVO> list=dao.foodLocationFindData(map);
 		
 		final int BLOCK=3;
-		int startpage=(curpage-1)/BLOCK*BLOCK+1;
-		int endpage=(curpage-1)/BLOCK*BLOCK+BLOCK;
+		int startpage=(page-1)/BLOCK*BLOCK+1;
+		int endpage=(page-1)/BLOCK*BLOCK+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
 		
 		int i=0;
@@ -147,7 +144,7 @@ public class FoodRestController {
 			obj.put("poster", poster);
 			
 			if(i==0) {
-				obj.put("curpage", curpage);
+				obj.put("curpage", page);
 				obj.put("totalpage", totalpage);
 				obj.put("startpage", startpage);
 				obj.put("endpage", endpage);
