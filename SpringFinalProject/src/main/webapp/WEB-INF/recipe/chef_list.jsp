@@ -33,10 +33,6 @@
   	</div>
   </main>
 </div>
-<!-- component 객체 간 데이터 전달
-	- parent -> child : pass, props
-	- child -> parent : emit, events
- -->
 <script>
 	let eventBus=new Vue();
 	Vue.component('chef_main',{
