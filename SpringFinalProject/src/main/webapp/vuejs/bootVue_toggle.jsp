@@ -29,16 +29,26 @@ h1{
 	<div class=row>
 		<template>
 			<div>
-				<b-button id="show-btn" @click="showModal">Open</b-button>
-										<!-- 골뱅이로 줄 때는 메소드에 괄호 생략 -->
-				<b-button id="toggle-btn" v-on:click="toggleModal()">Toggle</b-button>
+				<b-button @click="showModal">Open</b-button>
+						<!-- 골뱅이로 줄 때는 메소드에 괄호 생략 -->
+				<b-button v-b-toggle.my-sidebar>Toggle_side</b-button>
+				<b-button v-b-toggle.my-collapse>Toggle_collapse</b-button>
 				<b-modal ref="my-modal" hide-footer title="Modal Component">
 					<div class=text-center>
 						<h1>Hello Modal</h1>
 					</div>
 					<b-button class="m1" variant="outline-danger" block @click="hideModal">Close</b-button>
-					<b-button class="m2" variant="outline-warning" block @click="toggleModal">Toggle</b-button>
 				</b-modal>
+				<b-sidebar id="my-sidebar" title="Sidebar" shadow>
+			      <div class="px-3 py-2">
+			      	Sidebar Menu
+			      </div>
+			    </b-sidebar>
+			    <b-collapse id="my-collapse">
+			      <b-card title="Collapsible card">
+			        Hello world!
+			      </b-card>
+			    </b-collapse>
 			</div>
 		</template>
 	</div>
@@ -52,9 +62,6 @@ h1{
 			},
 			hideModal:function(){
 				this.$refs['my-modal'].hide()
-			},
-			toggleModal:function(){
-				this.$refs['my-modal'].toggle('#toggle-btn')
 			}
 		}
 	})
