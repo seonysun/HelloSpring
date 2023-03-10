@@ -155,34 +155,6 @@ public class FoodRestController {
 		return arr.toJSONString();
 	}
 	
-	/*
-	 * @GetMapping(value = "food/food_find_gu_vue.do", produces =
-	 * "text/plain;charset=UTF-8") public String food_find_gu_vue(String page, int
-	 * gu) { String[] guList = { "전체", "강서구", "양천구", "구로구", "마포구", "영등포구", "금천구",
-	 * "은평구", "서대문구", "동작구", "관악구", "종로구", "중구", "용산구", "서초구", "강북구", "성북구", "도봉구",
-	 * "동대문구", "성동구", "강남구", "노원구", "중랑구", "광진구", "송파구", "강동구" };
-	 * 
-	 * if(page==null) page="1"; int curpage=Integer.parseInt(page); int
-	 * totalpage=dao.foodLocationTotalPage(guList[gu]); Map map=new HashMap();
-	 * map.put("start", (curpage*20)-19); map.put("end", curpage*20);
-	 * map.put("address", guList[gu]); List<FoodVO>
-	 * list=dao.foodLocationFindData(map);
-	 * 
-	 * final int BLOCK=3; int startpage=(curpage-1)/BLOCK*BLOCK+1; int
-	 * endpage=(curpage-1)/BLOCK*BLOCK+BLOCK; if(endpage>totalpage)
-	 * endpage=totalpage;
-	 * 
-	 * int i=0; JSONArray arr=new JSONArray(); for(FoodVO vo:list) { JSONObject
-	 * obj=new JSONObject(); obj.put("fno", vo.getFno()); obj.put("name",
-	 * vo.getName()); obj.put("score", vo.getScore()); String poster=vo.getPoster();
-	 * poster=poster.substring(0, poster.indexOf("^")); poster=poster.replace("#",
-	 * "&"); obj.put("poster", poster);
-	 * 
-	 * if(i==0) { obj.put("curpage", curpage); obj.put("totalpage", totalpage);
-	 * obj.put("startpage", startpage); obj.put("endpage", endpage); } arr.add(obj);
-	 * i++; } return arr.toJSONString(); }
-	 */
-	
 	@GetMapping(value = "food/food_location_detail_vue.do", produces = "text/plain;charset=UTF-8")
 	public String food_location_detail_vue(int fno) {
 		FoodVO vo=dao.foodLocationDetailData(fno);
@@ -203,5 +175,28 @@ public class FoodRestController {
 		obj.put("time", vo.getTime());
 		obj.put("menu", vo.getMenu());
 		return obj.toJSONString();
+	}
+	
+	@GetMapping(value = "food/component_category_vue.do", produces = "text/plain;charset=UTF-8")
+	public String food_component_cate_vue() {
+		List<CategoryVO> list=dao.categoryListData();
+		JSONObject root=new JSONObject();
+		JSONArray arr1=new JSONArray();
+		JSONArray arr2=new JSONArray();
+		JSONArray arr3=new JSONArray();
+		for(int i=0;i<list.size();i++) {
+			CategoryVO vo=list.get(i);
+			JSONObject obj=new JSONObject();
+			obj.put("cno", vo.getCno());
+			obj.put("title", vo.getTitle());
+			obj.put("poster", vo.getPoster());
+			if(i>=0 && i<12) arr1.add(obj);
+			if(i>=12 && i<18) arr2.add(obj);
+			if(i>=18 && i<30) arr3.add(obj);
+		}
+		root.put("cate1", arr1);
+		root.put("cate2", arr2);
+		root.put("cate3", arr3);
+		return root.toJSONString();
 	}
 }

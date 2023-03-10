@@ -57,6 +57,20 @@
           <li><a href="#">가격비교</a></li>
         </ul>
       </li>
+      <li><a class="drop" href="#">제주</a>
+        <ul>
+          <li><a href="../jeju/location.do">행사&관광</a></li>
+          <li><a href="../jeju/food.do">제주맛집</a></li>
+        </ul>
+      </li>
+      <li><a class="drop" href="#">스토어</a>
+        <ul>
+          <li><a href="../recipe/recipe_list.do">전체</a></li>
+          <li><a href="../recipe/chef_list.do">특가</a></li>
+          <li><a href="#">베스트</a></li>
+          <li><a href="#">신상</a></li>
+        </ul>
+      </li>
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
           <li><a href="../board/list.do">게시판</a></li>
