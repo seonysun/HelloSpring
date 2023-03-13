@@ -17,10 +17,11 @@
 
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
 <!-- JAVASCRIPTS --> 
-<script src="../layout/scripts/jquery.min.js"></script> 
+<script src="http://code.jquery.com/jquery.js"></script>
+<!-- <script src="../layout/scripts/jquery.min.js"></script>  -->
 <script src="../layout/scripts/jquery.backtotop.js"></script> 
 <script src="../layout/scripts/jquery.mobilemenu.js"></script> 
 <script src="../layout/scripts/jquery.flexslider-min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7b9d67490320db6911ad3cb1c1e9e18&libraries=services"></script>
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7b9d67490320db6911ad3cb1c1e9e18&libraries=services"></script> -->
 </body>
 </html>

@@ -65,8 +65,8 @@
       </li>
       <li><a class="drop" href="#">스토어</a>
         <ul>
-          <li><a href="../recipe/recipe_list.do">전체</a></li>
-          <li><a href="../recipe/chef_list.do">특가</a></li>
+          <li><a href="#">전체</a></li>
+          <li><a href="#">특가</a></li>
           <li><a href="#">베스트</a></li>
           <li><a href="#">신상</a></li>
         </ul>

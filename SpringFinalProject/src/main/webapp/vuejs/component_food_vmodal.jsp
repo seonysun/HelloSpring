@@ -172,7 +172,7 @@ h1{
 		},
 		mounted:function(){
 			let _this=this
-			axios.get('http://localhost:8080/web/food/component_category_vue.do').then(function(response){
+			axios.get('http://localhost/web/food/component_category_vue.do').then(function(response){
 				console.log(response.data)
 				_this.category=response.data
 				_this.cate_list1=_this.category.cate1
@@ -184,7 +184,7 @@ h1{
 			let _this=this
 			eventBus.$on('showFoodListEvent', function(cno, bool){
 				_this.isShow=bool
-				axios.get('http://localhost:8080/web/food/category_info_vue.do',{
+				axios.get('http://localhost/web/food/category_info_vue.do',{
 					params:{
 						cno:cno
 					}
@@ -192,7 +192,7 @@ h1{
 					console.log(response.data)
 					_this.category_info=response.data
 				})
-				axios.get('http://localhost:8080/web/food/food_list_vue.do',{
+				axios.get('http://localhost/web/food/food_list_vue.do',{
 					params:{
 						cno:cno
 					}

@@ -42,4 +42,10 @@ public class FoodDAO {
 	public List<FoodVO> foodTop7(){
 		return mapper.foodTop7();
 	}
+	public List<String> foodGetNameData(){
+		return mapper.foodGetNameData();
+	}
+	public FoodVO foodInfoData(String name) {
+		return mapper.foodInfoData(name);
+	}
 }

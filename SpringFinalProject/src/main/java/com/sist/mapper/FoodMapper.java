@@ -60,4 +60,17 @@ public interface FoodMapper {
 			+ "ORDER BY hit DESC) "
 			+ "WHERE rownum<=7")
 	public List<FoodVO> foodTop7();
+	
+	//맛집명 가져오기
+	@Select("SELECT name FROM food_location "
+			+ "WHERE length(name)>1 OR name!='라구'")
+	public List<String> foodGetNameData();
+	
+	//맛집 정보 읽기
+	@Select("SELECT fno,name,poster,score,rownum "
+			+ "FROM (SELECT fno,name,poster,score "
+			+ "FROM food_location "
+			+ "ORDER BY fno) "
+			+ "WHERE name=#{name} AND rownum=1")
+	public FoodVO foodInfoData(String name);
 }
