@@ -31,4 +31,13 @@ public class RecipeService {
 	public List<RecipeVO> chefMadeRecipeData(String chef){
 		return cMapper.chefMadeRecipeData(chef);
 	}
+	public int recipeDetailCount(int no) {
+		return rMapper.recipeDetailCount(no);
+	}
+	public RecipeDetailVO recipeDetailData(int no) {
+		return rMapper.recipeDetailData(no);
+	}
+	public List<GoodsVO> goodsListData(String goods_name){
+		return rMapper.goodsListData(goods_name);
+	}
 }

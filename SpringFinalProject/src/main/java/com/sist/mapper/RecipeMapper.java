@@ -19,4 +19,20 @@ public interface RecipeMapper {
 	
 	@Select("SELECT TO_CHAR(COUNT(*),'999,999') FROM recipe")
 	public String recipeRowCount();
+	
+	@Select("SELECT COUNT(*) FROM recipeDetail "
+			+ "WHERE no=#{no}")
+	public int recipeDetailCount(int no);
+	
+	@Select("SELECT * FROM recipeDetail "
+			+ "WHERE no=#{no}")
+	public RecipeDetailVO recipeDetailData(int no);
+	
+	@Select("SELECT no,goods_name,goods_price,goods_poster,rownum "
+			+ "FROM (SELECT no,goods_name,goods_price,goods_poster "
+			+ "FROM goods_all "
+			+ "WHERE goods_name LIKE '%'||#{goods_name}||'%' "
+			+ "ORDER BY TO_NUMBER(REPLACE(REPLACE(goods_price,',',''),'원',''))) "
+			+ "WHERE rownum<=3")
+	public List<GoodsVO> goodsListData(String goods_name);
 }
