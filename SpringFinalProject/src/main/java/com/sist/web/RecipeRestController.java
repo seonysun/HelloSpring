@@ -100,7 +100,8 @@ public class RecipeRestController {
 	@GetMapping(value = "recipe/goods_price_vue.do", produces = "text/plain;charset=UTF-8")
 	public String goods_price_vue(String goods_name) {
 		String name=goods_name.replaceAll("[^가-힣]", "");
-//		name=name.substring(0, name.indexOf(" "));
+		name=name.replace(" ", "|");
+		name=name.replace("||", "|");
 		List<GoodsVO> list=service.goodsListData(name);
 		JSONArray arr=new JSONArray();
 		for(GoodsVO vo:list) {
@@ -108,9 +109,9 @@ public class RecipeRestController {
 			obj.put("no", vo.getNo());
 			obj.put("goods_poster", vo.getGoods_poster());
 			String gname=vo.getGoods_name();
-			if(gname.length()>10) {
-				gname=gname.substring(0, 10)+"..";
-			}
+//			if(gname.length()>10) {
+//				gname=gname.substring(0, 10)+"..";
+//			}
 			obj.put("goods_name", gname);
 			obj.put("goods_price", vo.getGoods_price());
 			arr.add(obj);

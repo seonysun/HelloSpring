@@ -31,7 +31,7 @@ public interface RecipeMapper {
 	@Select("SELECT no,goods_name,goods_price,goods_poster,rownum "
 			+ "FROM (SELECT no,goods_name,goods_price,goods_poster "
 			+ "FROM goods_all "
-			+ "WHERE goods_name LIKE '%'||#{goods_name}||'%' "
+			+ "WHERE REGEXP_LIKE(goods_name,#{goods_name}) "
 			+ "ORDER BY TO_NUMBER(REPLACE(REPLACE(goods_price,',',''),'원',''))) "
 			+ "WHERE rownum<=3")
 	public List<GoodsVO> goodsListData(String goods_name);

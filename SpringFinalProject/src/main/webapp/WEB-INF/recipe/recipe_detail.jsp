@@ -74,7 +74,7 @@
   		</c:if>
   	</div>
   	<div class="one_half" v-if="isShow">
-  		<div class=col-md-4 v-for="g in goods_list">
+  		<div class=col-md-12 v-for="g in goods_list">
   			<div class=thumbnail>
   			  <a href="#">
   				<img :src="g.goods_poster">
