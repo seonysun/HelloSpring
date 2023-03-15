@@ -13,6 +13,13 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	<aop:aspectj-autoproxy/>
 	<context:component-scan base-package="com.sist.*"/>
+	<mvc:annotation-driven/>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/main/main.do"/>
+			<bean id="commonIntercepter" class="com.sist.intercepter.CommonIntercepter"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
 		p:definitions="/WEB-INF/tiles.xml"
 	/>

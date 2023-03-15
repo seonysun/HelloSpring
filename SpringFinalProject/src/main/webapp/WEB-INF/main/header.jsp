@@ -19,14 +19,20 @@
     <div class="fl_right">
      <c:if test="${sessionScope.id==null }">
       <ul class="inline">
-        <li>ID <input type=text name=id size=15 class=input-sm v-model="id" ref="id"></li>
+        <li>ID <input type=text name=id size=15 class=input-sm ref="id" value="${id }"></li>
         <li>PW <input type=password name=pwd size=15 class=input-sm v-model="pwd" ref="pwd"></li>
+        <c:if test="${ck==true }">
+	        <li>ID 저장 <input type="checkbox" ref="ck" checked></li>
+        </c:if>
+        <c:if test="${ck==false }">
+	        <li>ID 저장 <input type="checkbox" ref="ck"></li>
+        </c:if>
         <li><input type=button value=로그인 class="btn btn-sm btn-danger" v-on:click="login()"></li>
       </ul>
      </c:if>
      <c:if test="${sessionScope.id!=null }">
       <ul class="inline">
-        <li>${sessionScope.name }님 로그인 중입니다</li>
+        <li>${sessionScope.name }님(${sessionScope.admin=='y'?"관리자":"일반사용자" }) 로그인 중입니다</li>
         <li><input type=button value=로그아웃 class="btn btn-sm btn-danger" v-on:click="logout()"></li>
       </ul>
      </c:if>
@@ -39,7 +45,7 @@
       <li class="active"><a href="../main/main.do">Home</a></li>
       <li><a class="drop" href="#">회원</a>
         <ul>
-          <li><a href="#">회원가입</a></li>
+          <li><a href="../member/join.do">회원가입</a></li>
           <li><a href="#">아이디찾기</a></li>
           <li><a href="#">비밀번호찾기</a></li>
         </ul>
@@ -90,10 +96,45 @@
 		data:{
 			id:'',
 			pwd:'',
-			msg:''
+			msg:'',
+			ck:false
 		},
 		methods:{
+			chatlogin:function(){
+				if(this.id.trim()==""){
+					this.$refs.id.focus()
+					return
+				}
+				if(this.pwd.trim()==""){
+					this.$refs.pwd.focus()
+					return
+				}
+				
+				let _this=this
+				axios.get('http://localhost/web/member/chat_login_vue.do',{
+					params:{
+						id:this.id,
+						pwd:this.pwd
+					}
+				}).then(function(response){
+					let res=response.data.trim()
+					if(res==='NOID'){
+						alert("존재하지 않는 ID입니다!")
+						_this.id='';
+						_this.pwd='';
+						_this.$refs.id.focus()
+					}else if(res==='NOPWD'){
+						alert("비밀번호를 다시 확인해주세요!")
+						_this.pwd='';
+						_this.$refs.pwd.focus()
+					}else{
+						location.href="../main/main.do"
+					}
+				})
+			},
 			login:function(){
+				this.id=this.$refs.id.value
+				this.ck=this.$refs.ck.checked
 				if(this.id.trim()==""){
 					this.$refs.id.focus()
 					return
@@ -107,7 +148,8 @@
 				axios.get('http://localhost/web/member/login_vue.do',{
 					params:{
 						id:this.id,
-						pwd:this.pwd
+						pwd:this.pwd,
+						ck:this.ck
 					}
 				}).then(function(response){
 					let res=response.data.trim()

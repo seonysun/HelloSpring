@@ -10,6 +10,7 @@ import com.sist.vo.MemberVO;
 public class MemberDAO {
 	@Autowired
 	private MemberMapper mapper;
+	//채팅 로그인
 	public MemberVO memberLogin(String id, String pwd) {
 		MemberVO vo=new MemberVO();
 		int count=mapper.memberIdCheck(id);
@@ -25,6 +26,20 @@ public class MemberDAO {
 				vo.setMsg("NOPWD");
 			}
 		}
+		return vo;
+	}
+	
+	//회원가입
+	public int joinIdCheck(String id) {
+		return mapper.joinIdCheck(id);
+	}
+	public void memberInsert(MemberVO vo) {
+		mapper.memberInsert(vo);
+	}
+	
+	//회원 로그인
+	public MemberVO JoinLogin(String id, String pwd) {
+		MemberVO vo=mapper.JoinLogin(id);
 		return vo;
 	}
 }
